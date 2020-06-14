@@ -1,0 +1,84 @@
+{
+  "fr": {
+    "global": {
+      "select": "Sélectionnez",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "upload": "Télécharger"
+    },
+    "files": {
+      "name": "Nom",
+      "size": "Taille de",
+      "updated": "mis à Jour",
+      "noFilesFound": "Aucun fichier Trouvé",
+      "untitledFolder": "Dossier sans titre",
+      "search": "Rechercher"
+    },
+    "accounts": {
+      "confirmRemove": "Si vous supprimez ce compte, vous ne pourrez plus l'explorer. Êtes-vous sûr?",
+      "connectedAccounts": "comptes connectés",
+      "logout": "déconnexion",
+      "manage": "Gérer vos comptes de stockage en nuage ici.",
+      "chooseAccount": "Bienvenue! Veuillez choisir un service à connecter",
+      "connectMore": "se Connecter plus!",
+      "upload": "Télécharger",
+      "uploadFromComputer": "Upload à partir de votre ordinateur"
+    },
+    "selector": {
+      "myComputer": "Mon Ordinateur",
+      "accounts": "les Comptes de"
+    },
+    "dropzone": {
+      "message": "Glissez et déposez les fichiers ici, ou cliquez pour ouvrir le sélecteur de fichiers"
+    },
+    "computer": {
+      "noSupport": "votre navigateur n'a pas de support Flash, Silverlight ou HTML5."
+    },
+    "addConfirm": {
+      "confirm": "Confirmer la connexion au compte",
+      "clickBelow": "cliquez ci-dessous pour connecter votre compte {serviceName} ",
+      "connectAccount": "Connect"
+    }
+  },
+  "zh-CN": {
+    "global": {
+      "select": "选择",
+      "cancel": "取消",
+      "save": "保存",
+      "upload": "上传"
+    },
+    "files": {
+      "name": "名称",
+      "size": "大小",
+      "updated": "更新自",
+      "noFilesFound": "找不到文件",
+      "untitledFolder": "未命名",
+      "search": "查找"
+    },
+    "accounts": {
+      "confirmRemove": "若您移除此帐号, 您将无法浏览档案, 是否确定?",
+      "connectedAccounts": "已连接的帐号",
+      "logout": "登出",
+      "manage": "管理您的云帐号.",
+      "chooseAccount": "欢迎使用! 请选择您要连接的服务",
+      "connectMore": "连接更多服务!",
+      "upload": "上传",
+      "uploadFromComputer": "从您的电脑上传"
+    },
+    "selector": {
+      "myComputer": "我的电脑",
+      "accounts": "帐号"
+    },
+    "dropzone": {
+      "message": "拖放档案至此或点击以开启File Picker"
+    },
+    "computer": {
+      "noSupport": "您的浏览器不支援Flash, Silverlight 或 HTML5."
+    },
+    "addConfirm": {
+      "confirm": "确认连接帐号",
+      "clickBelow": "点选下方以连接您的 {serviceName} 帐号",
+      "connectAccount": "连接"
+    }
+  }
+}

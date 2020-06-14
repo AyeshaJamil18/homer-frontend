@@ -1,0 +1,49 @@
+{
+  "fr": {
+    "global": {
+      "select": "Sélectionner",
+      "cancel": "Annuler",
+      "save": "sauvegarder",
+      "upload": "Télécharger"
+    },
+    "files": {
+      "name": "prénom",
+      "size": "Taille",
+      "updated": "Mis à jour",
+      "noFilesFound": "Aucun fichier trouvé",
+      "untitledFolder": "Dossier sans titre",
+      "search": "Chercher",
+      "sizes": {
+        "b": "{fileSize} B",
+        "kb": "{fileSize} KB",
+        "mb": "{fileSize} MB",
+        "gb": "{fileSize} GB"
+      }
+    },
+    "accounts": {
+      "confirmRemove": "Si vous supprimez ce compte, vous ne pourrez plus l'explorer. Êtes-vous sûr?",
+      "connectedAccounts": "Comptes connectés",
+      "logout": "Connectez - Out",
+      "manage": "Gérez vos comptes de stockage en nuage ici.",
+      "chooseAccount": "Bienvenue! Veuillez choisir un service pour vous connecter",
+      "connectMore": "Connectez plus!",
+      "upload": "Télécharger",
+      "uploadFromComputer": "Télécharger depuis votre ordinateur"
+    },
+    "selector": {
+      "myComputer": "Mon ordinateur",
+      "accounts": "Comptes"
+    },
+    "dropzone": {
+      "message": "Glissez et déposez les fichiers ici, ou cliquez pour ouvrir l'explorateur de fichiers"
+    },
+    "computer": {
+      "noSupport": "Votre navigateur ne prend pas en charge Flash, Silverlight ou HTML5."
+    },
+    "addConfirm": {
+      "confirm": "Confirmer la connexion au compte.",
+      "clickBelow": "Cliquez ci-dessous pour connecter votre compte {serviceName}",
+      "connectAccount": "Connecter {serviceName} compte"
+    }
+  }
+}

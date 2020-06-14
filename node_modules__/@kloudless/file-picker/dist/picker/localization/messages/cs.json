@@ -1,0 +1,49 @@
+{
+  "cs": {
+    "global": {
+      "select": "Vybrat",
+      "cancel": "zrušení",
+      "save": "Uložit",
+      "upload": "nahrát"
+    },
+    "files": {
+      "name": "název",
+      "size": "Velikost",
+      "updated": "Aktualizováno",
+      "noFilesFound": "Nebyly nalezeny žádné soubory",
+      "untitledFolder": "Složka bez názvu",
+      "search": "Vyhledávání",
+      "sizes": {
+        "b": "{fileSize} B",
+        "kb": "{fileSize} KB",
+        "mb": "{fileSize} MB",
+        "gb": "{fileSize} GB"
+      }
+    },
+    "accounts": {
+      "confirmRemove": "Pokud tento účet odstraníte, nebudete jej již moci prozkoumat. Jsi si jistá?",
+      "connectedAccounts": "Připojené účty",
+      "logout": "odhlásit se",
+      "manage": "Zde můžete spravovat účty cloudového úložiště.",
+      "chooseAccount": "Vítejte! Vyberte službu, ke které se chcete připojit",
+      "connectMore": "Připojte více!",
+      "upload": "nahrát",
+      "uploadFromComputer": "Nahrát z počítače"
+    },
+    "selector": {
+      "myComputer": "Můj počítač",
+      "accounts": "Účty"
+    },
+    "dropzone": {
+      "message": "Přetáhněte soubory sem nebo kliknutím otevřete Průzkumník souborů"
+    },
+    "computer": {
+      "noSupport": "Váš prohlížeč nemá podporu Flash, Silverlight nebo HTML5."
+    },
+    "addConfirm": {
+      "confirm": "Potvrďte připojení účtu.",
+      "clickBelow": "Klikněte níže a připojte svůj účet {serviceName}",
+      "connectAccount": "Připojit účet {serviceName}"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "da": {
+    "global": {
+      "select": "Vælg",
+      "cancel": "Afbestille",
+      "save": "Gemme",
+      "upload": "Upload"
+    },
+    "files": {
+      "name": "Navn",
+      "size": "Størrelse",
+      "updated": "Opdateret",
+      "noFilesFound": "Ingen filer fundet",
+      "untitledFolder": "Untitled Folder",
+      "search": "Søg",
+      "sizes": {
+        "b": "{fileSize} B",
+        "kb": "{fileSize} KB",
+        "mb": "{fileSize} MB",
+        "gb": "{fileSize} GB"
+      }
+    },
+    "accounts": {
+      "confirmRemove": "Hvis du fjerner denne konto, vil du ikke længere kunne udforske den. Er du sikker?",
+      "connectedAccounts": "Tilknyttede konti",
+      "logout": "Log ud",
+      "manage": "Administrer dine Cloud Storage-konti her.",
+      "chooseAccount": "Velkommen! Vælg venligst en tjeneste for at oprette forbindelse",
+      "connectMore": "Tilslut mere!",
+      "upload": "Upload",
+      "uploadFromComputer": "Upload fra din computer"
+    },
+    "selector": {
+      "myComputer": "Min computer",
+      "accounts": "Konti"
+    },
+    "dropzone": {
+      "message": "Træk og slip filer her, eller klik for at åbne Filoversigten"
+    },
+    "computer": {
+      "noSupport": "Din browser har ikke Flash, Silverlight eller HTML5 support."
+    },
+    "addConfirm": {
+      "confirm": "Bekræft kontoforbindelse.",
+      "clickBelow": "Klik nedenfor for at forbinde din {serviceName} konto",
+      "connectAccount": "Tilslut {serviceName} Konto"
+    }
+  }
+}

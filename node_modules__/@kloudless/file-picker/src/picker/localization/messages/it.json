@@ -1,0 +1,49 @@
+{
+  "it": {
+    "global": {
+      "select": "Selezionare",
+      "cancel": "Annulla",
+      "save": "Salvare",
+      "upload": "Caricare"
+    },
+    "files": {
+      "name": "Nome",
+      "size": "Taglia",
+      "updated": "aggiornato",
+      "noFilesFound": "Nessun file trovato",
+      "untitledFolder": "Cartella senza titolo",
+      "search": "Ricerca",
+      "sizes": {
+        "b": "{fileSize} B",
+        "kb": "{fileSize} KB",
+        "mb": "{fileSize} MB",
+        "gb": "{fileSize} GB"
+      }
+    },
+    "accounts": {
+      "confirmRemove": "Se rimuovi questo account, non sarai più in grado di esplorarlo. Sei sicuro?",
+      "connectedAccounts": "Account collegati",
+      "logout": "disconnettersi",
+      "manage": "Gestisci i tuoi account di archiviazione cloud qui.",
+      "chooseAccount": "Benvenuto! Si prega di scegliere un servizio per la connessione",
+      "connectMore": "Connetti di più!",
+      "upload": "Caricare",
+      "uploadFromComputer": "Carica dal tuo computer"
+    },
+    "selector": {
+      "myComputer": "Il mio computer",
+      "accounts": "conti"
+    },
+    "dropzone": {
+      "message": "Trascina qui i file o fai clic per aprire Esplora file"
+    },
+    "computer": {
+      "noSupport": "Il tuo browser non ha supporto Flash, Silverlight o HTML5."
+    },
+    "addConfirm": {
+      "confirm": "Conferma la connessione dell'account.",
+      "clickBelow": "Fai clic di seguito per connettere il tuo account {serviceName}",
+      "connectAccount": "Connetti l'account {serviceName}"
+    }
+  }
+}

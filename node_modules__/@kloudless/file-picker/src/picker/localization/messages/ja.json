@@ -1,0 +1,49 @@
+{
+  "ja": {
+    "global": {
+      "select": "選択する",
+      "cancel": "キャンセル",
+      "save": "保存する",
+      "upload": "アップロードする"
+    },
+    "files": {
+      "name": "名",
+      "size": "サイズ",
+      "updated": "更新しました",
+      "noFilesFound": "ファイルが見つかりません",
+      "untitledFolder": "無題のフォルダ",
+      "search": "サーチ",
+      "sizes": {
+        "b": "{fileSize} B",
+        "kb": "{fileSize} KB",
+        "mb": "{fileSize} MB",
+        "gb": "{fileSize} GB"
+      }
+    },
+    "accounts": {
+      "confirmRemove": "このアカウントを削除すると、それを探索することはできなくなります。 本気ですか？",
+      "connectedAccounts": "接続アカウント",
+      "logout": "ログアウト",
+      "manage": "ここでクラウドストレージアカウントを管理します。",
+      "chooseAccount": "ようこそ！ 接続するサービスを選択してください",
+      "connectMore": "もっとつなげよう！",
+      "upload": "アップロードする",
+      "uploadFromComputer": "パソコンからアップロードする"
+    },
+    "selector": {
+      "myComputer": "私のコンピューター",
+      "accounts": "アカウント"
+    },
+    "dropzone": {
+      "message": "ここにファイルをドラッグアンドドロップするか、クリックしてファイルエクスプローラを開きます。"
+    },
+    "computer": {
+      "noSupport": "お使いのブラウザはFlash、Silverlight、またはHTML5をサポートしていません。"
+    },
+    "addConfirm": {
+      "confirm": "アカウントの接続を確認してください。",
+      "clickBelow": "下をクリックして{serviceName}アカウントに接続してください",
+      "connectAccount": "接続{serviceName}アカウント"
+    }
+  }
+}

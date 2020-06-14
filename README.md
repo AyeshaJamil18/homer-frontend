@@ -1,0 +1,1 @@
+This project uses Material, React, Typescript, Sass and Devias Kit
