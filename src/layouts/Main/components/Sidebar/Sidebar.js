@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     root: {
-        backgroundColor: theme.palette.white,
+        background: '#FFc594',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
@@ -40,27 +40,20 @@ const Sidebar = props => {
 
     const pages = [
         {
-            title: 'Dashboard',
+            title: 'Home Page',
             href: '/dashboard',
             icon: <DashboardIcon/>
         },
         {
-            title: 'My Documents',
+            title: 'My Friends',
             href: '/myDocuments',
             icon: <PeopleIcon/>
         },
         {
-            title: 'Documents shared with Me',
+            title: 'Leaderboard',
             href: '/documentsSharedWithMe',
             icon: <LockOpenIcon/>
-        },
-        {
-            title: 'Public Documents',
-            href: '/sharedPublic',
-            icon: <ShoppingBasketIcon/>
         }
-
-
     ];
 
     return (

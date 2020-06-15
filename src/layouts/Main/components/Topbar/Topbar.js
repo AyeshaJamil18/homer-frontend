@@ -8,7 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        boxShadow: 'none'
+        boxShadow: 'none',
+        background: '#FF4500'
     },
     flexGrow: {
         flexGrow: 1
