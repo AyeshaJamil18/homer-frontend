@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { makeStyles  } from '@material-ui/styles';
 import { AppBar, Hidden, IconButton, Typography, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import SearchField from 'react-search-field';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,6 +32,7 @@ const Topbar = props => {
 
     const [notifications] = useState([]);
 
+    let onSearchClick;
     return (
         <AppBar
             {...rest}
@@ -44,7 +46,10 @@ const Topbar = props => {
                     </Typography>
                 </RouterLink>
                 <div className={classes.flexGrow}/>
-
+                <SearchField
+                    placeholder='Search item'
+                    onSearchClick={onSearchClick}
+                />
                 <Hidden lgUp>
                     <IconButton
                         color="inherit"

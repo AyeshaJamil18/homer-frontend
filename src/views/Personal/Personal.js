@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Dashboard = () => {
+const Personal = () => {
     const classes = useStyles();
 
     return (
@@ -42,4 +42,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Personal;

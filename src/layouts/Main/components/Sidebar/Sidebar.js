@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import { Profile, SidebarNav, UpgradePlan } from './components';
@@ -45,25 +45,22 @@ const Sidebar = props => {
             icon: <DashboardIcon/>
         },
         {
-            title: 'My Friends',
-            href: '/myDocuments',
+            title: 'Personal Page',
+            href: '/SettingsView',
             icon: <PeopleIcon/>
+        },
+        {
+            title: 'Settings',
+            href: '/SettingsView',
+            icon: <SettingsIcon/>
         },
         {
             title: 'Leaderboard',
             href: '/documentsSharedWithMe',
             icon: <LockOpenIcon/>
-        },
-        {
-            title: 'Settings',
-            href: '/myDocuments',
-            icon: <PeopleIcon/>
-        },
-        {
-            title: 'Personal Page',
-            href: '/myDocuments',
-            icon: <PeopleIcon/>
-        },
+        }
+
+
     ];
 
     return (

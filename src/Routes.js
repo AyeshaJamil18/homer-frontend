@@ -16,6 +16,7 @@ import {
     Settings as SettingsView,
     SharedDocuments as SharedDocumentsView,
     SignIn as SignInView,
+
     SignUp as SignUpView,
     Typography as TypographyView
 } from './views';
@@ -35,16 +36,24 @@ const Routes = () => {
                 path="/dashboard"
             />
             <RouteWithLayout
-                component={MyDocumentListView}
+
+                component={SettingsView}
                 exact
                 layout={MainLayout}
-                path="/myDocuments"
+                path="/PersonalView"
             />
             <RouteWithLayout
-                component={SharedDocumentsView}
+
+                component={SettingsView}
                 exact
                 layout={MainLayout}
-                path="/documentsSharedWithMe"
+                path="/SettingsView"
+            />
+            <RouteWithLayout
+                component={SettingsView}
+                exact
+                layout={MainLayout}
+                path="/SettingsView"
             />
             <RouteWithLayout
                 component={PublicDocumentsView}
