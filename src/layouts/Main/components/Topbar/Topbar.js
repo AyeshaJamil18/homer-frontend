@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { AppBar, Hidden, IconButton, Toolbar } from '@material-ui/core';
+import { makeStyles  } from '@material-ui/styles';
+import { AppBar, Hidden, IconButton, Typography, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +16,12 @@ const useStyles = makeStyles(theme => ({
     },
     signOutButton: {
         marginLeft: theme.spacing(1)
-    }
+    },
+    title:
+        {
+         color: 'white'
+        }
+
 }));
 
 const Topbar = props => {
@@ -33,12 +38,10 @@ const Topbar = props => {
         >
             <Toolbar>
                 <RouterLink to="/">
-                    <img
-                        alt="Logo"
-                        height={40}
-                        src="/images/logos/logo_small.png"
-                        width={100}
-                    />
+
+                    <Typography variant="h1" className={classes.title}>
+                        HOMER
+                    </Typography>
                 </RouterLink>
                 <div className={classes.flexGrow}/>
 

@@ -53,7 +53,17 @@ const Sidebar = props => {
             title: 'Leaderboard',
             href: '/documentsSharedWithMe',
             icon: <LockOpenIcon/>
-        }
+        },
+        {
+            title: 'Settings',
+            href: '/myDocuments',
+            icon: <PeopleIcon/>
+        },
+        {
+            title: 'Personal Page',
+            href: '/myDocuments',
+            icon: <PeopleIcon/>
+        },
     ];
 
     return (
