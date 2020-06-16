@@ -7,14 +7,9 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 import {
     Account as AccountView,
     Dashboard as DashboardView,
-    DocumentView as DocumentView,
-    Editor as EditorView,
     Icons as IconsView,
-    MyDocumentList as MyDocumentListView,
     NotFound as NotFoundView,
-    PublicDocuments as PublicDocumentsView,
     Settings as SettingsView,
-    SharedDocuments as SharedDocumentsView,
     SignIn as SignInView,
 
     SignUp as SignUpView,
@@ -56,12 +51,6 @@ const Routes = () => {
                 path="/SettingsView"
             />
             <RouteWithLayout
-                component={PublicDocumentsView}
-                exact
-                layout={MainLayout}
-                path="/sharedPublic"
-            />
-            <RouteWithLayout
                 component={TypographyView}
                 exact
                 layout={MainLayout}
@@ -84,18 +73,6 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/settings"
-            />
-            <RouteWithLayout
-                component={EditorView}
-                exact
-                layout={MainLayout}
-                path="/editor"
-            />
-            <RouteWithLayout
-                component={DocumentView}
-                exact
-                layout={MainLayout}
-                path="/document/:id"
             />
             <RouteWithLayout
                 component={SignUpView}

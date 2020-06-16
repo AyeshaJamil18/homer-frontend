@@ -3,14 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import {
-    MyPublicUploads,
-    MyUploads,
-    SharedWithMePrivately,
-    SharedWithMePublicly,
     TotalDocuments,
     TotalGlobalDocuments,
-    TotalUsers,
-    UploadCard
+    TotalUsers
 } from './components';
 
 const useStyles = makeStyles(theme => ({

@@ -9,8 +9,7 @@ import {
     SharedWithMePublicly,
     TotalDocuments,
     TotalGlobalDocuments,
-    TotalUsers,
-    UploadCard
+    TotalUsers
 } from './components';
 
 const useStyles = makeStyles(theme => ({
