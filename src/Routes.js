@@ -7,7 +7,6 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 import {
     Personal as PersonalView,
     AddFriend as AddFriendView,
-    Account as AccountView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
@@ -15,7 +14,10 @@ import {
     SignIn as SignInView,
     SignUp as SignUpView,
     Typography as TypographyView,
-    SharePlaylist as SharePlaylistView
+    SharePlaylist as SharePlaylistView,
+    LB as LB,
+
+
 } from './views';
 
 const Routes = () => {
@@ -61,6 +63,12 @@ const Routes = () => {
                 path="/SharePlaylist"
             />
             <RouteWithLayout
+                component={LB}
+                exact
+                layout={MainLayout}
+                path="/LB"
+            />
+            <RouteWithLayout
                 component={TypographyView}
                 exact
                 layout={MainLayout}
@@ -72,12 +80,7 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/icons"
             />
-            <RouteWithLayout
-                component={AccountView}
-                exact
-                layout={MainLayout}
-                path="/account"
-            />
+
             <RouteWithLayout
                 component={SettingsView}
                 exact

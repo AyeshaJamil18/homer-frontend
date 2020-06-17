@@ -2,15 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import { AccountDetails, AccountProfile } from './components';
-
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(4)
     }
 }));
 
-const Account = () => {
+const LB = () => {
     const classes = useStyles();
 
     return (
@@ -21,25 +19,21 @@ const Account = () => {
             >
                 <Grid
                     item
-                    lg={4}
-                    md={6}
-                    xl={4}
+                    md={7}
                     xs={12}
                 >
-                    <AccountProfile/>
+                    Global leaderboard
                 </Grid>
                 <Grid
                     item
-                    lg={8}
-                    md={6}
-                    xl={8}
+                    md={5}
                     xs={12}
                 >
-                    <AccountDetails/>
+                  Local Leaderboard
                 </Grid>
             </Grid>
         </div>
     );
 };
 
-export default Account;
+export default LB;

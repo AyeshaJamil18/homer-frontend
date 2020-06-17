@@ -56,7 +56,7 @@ const Sidebar = props => {
         },
         {
             title: 'Leaderboard',
-            href: '/documentsSharedWithMe',
+            href: '/LB',
             icon: <LockOpenIcon/>
         }
 
