@@ -1,42 +1,79 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
-
-import {
-    MyPublicUploads,
-    MyUploads,
-    SharedWithMePrivately,
-    SharedWithMePublicly,
-    TotalDocuments,
-    TotalGlobalDocuments,
-    TotalUsers
-} from './components';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: theme.spacing(4)
+        padding: theme.spacing(4),
+        flexGrow: 1,
     }
 }));
+
+
+const HandleAddFriend = () => {
+
+
+};
+
 
 const Personal = () => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Grid
-                container
-                spacing={4}
-            >
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                    xl={1}
-                    xs={12}
-                >
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+                Personal Settings
+            </Typography>
 
-                </Grid>
-            </Grid>
+            <Card className={classes.root}>
+                <CardContent>
+                    <Typography variant="h5" className={classes.title} color="textSecondary" gutterBottom>
+                        FRIENDS
+                    </Typography>
+                    <CardActions>
+                        <Grid direction = 'row' >
+                            <Button size="small" onClick={HandleAddFriend}>
+                                View Friends
+                            </Button>
+                            <Button size="small">Add Friends</Button>
+                        </Grid>
+                    </CardActions>
+                </CardContent>
+            </Card>
+
+            <Card className={classes.root}>
+                <CardContent>
+                    <Typography  variant="h5" className={classes.title} color="textSecondary" gutterBottom>
+                       PLAYLIST
+                    </Typography>
+                    <CardActions>
+                        <Grid allign = 'row' >
+                            <Button size="small">Share Playlist</Button>
+                            <Button size="small">Create New Playlist</Button>
+                        </Grid>
+                    </CardActions>
+                </CardContent>
+
+            </Card>
+
+            <Card className={classes.root}>
+                <CardContent>
+                    <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
+                        SETTINGS
+                    </Typography>
+
+                </CardContent>
+                <CardActions>
+                    <Grid allign = 'row' >
+                        <Button size="small">View settings</Button>
+                    </Grid>
+                </CardActions>
+            </Card>
         </div>
     );
 };
