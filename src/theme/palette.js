@@ -8,9 +8,9 @@ export default {
     white,
     primary: {
         contrastText: white,
-        dark: '#FF4500',
-        main: '#FF4500',
-        light: '#FF4500'
+        dark: '#FC4C02',
+        main: '#FC4C02',
+        light: '#E9D6BD'
     },
     secondary: {
         contrastText: white,
@@ -48,7 +48,7 @@ export default {
         link: colors.blue[600]
     },
     background: {
-        default: '#F4F6F8',
+        default: '#FC4C02',
         paper: white
     },
     icon: colors.blueGrey[600],

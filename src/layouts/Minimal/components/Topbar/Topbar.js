@@ -8,7 +8,7 @@ import { AppBar, Toolbar,Typography } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     root: {
         boxShadow: 'none',
-        background: '#FF4500'
+        background: '#FC4C02'
     },
     flexGrow: {
         flexGrow: 1
