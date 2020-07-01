@@ -28,7 +28,12 @@ const checkUserEmailExist = (userEmail) =>
     HttpService.get(baseURL + '/checkEmail/' + userEmail);
 
 
+const getUserByUsername = (username) =>
+    HttpService.get(baseURL + '/getUserByUsername/' + username);
+
+
 export default {
     getCurrentUserData,
-    checkUserEmailExist
+    checkUserEmailExist,
+    getUserByUsername
 };

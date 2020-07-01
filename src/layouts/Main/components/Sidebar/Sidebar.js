@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import { Profile, SidebarNav, UpgradePlan } from './components';
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     root: {
-        backgroundColor: theme.palette.white,
+        background: '#E9D6BD',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
@@ -40,24 +40,24 @@ const Sidebar = props => {
 
     const pages = [
         {
-            title: 'Dashboard',
+            title: 'Home Page',
             href: '/dashboard',
             icon: <DashboardIcon/>
         },
         {
-            title: 'My Documents',
-            href: '/myDocuments',
+            title: 'Personal Page',
+            href: '/PersonalView',
             icon: <PeopleIcon/>
         },
         {
-            title: 'Documents shared with Me',
-            href: '/documentsSharedWithMe',
-            icon: <LockOpenIcon/>
+            title: 'Settings',
+            href: '/SettingsView',
+            icon: <SettingsIcon/>
         },
         {
-            title: 'Public Documents',
-            href: '/sharedPublic',
-            icon: <ShoppingBasketIcon/>
+            title: 'Leaderboard',
+            href: '/LB',
+            icon: <LockOpenIcon/>
         }
 
 

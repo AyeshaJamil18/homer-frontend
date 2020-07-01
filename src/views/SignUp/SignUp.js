@@ -300,12 +300,7 @@ const SignUp = props => {
                 >
                     <div className={classes.quote}>
                         <div className={classes.quoteInner}>
-                            <Typography
-                                className={classes.quoteText}
-                                variant="h1"
-                            >
-                                A platform to anonymize your dataset and share it with others
-                            </Typography>
+                           
 
                         </div>
                     </div>
