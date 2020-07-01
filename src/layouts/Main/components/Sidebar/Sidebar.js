@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     root: {
-        background: '#FFc594',
+        background: '#E9D6BD',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',

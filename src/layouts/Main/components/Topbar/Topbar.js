@@ -10,7 +10,7 @@ import SearchField from 'react-search-field';
 const useStyles = makeStyles(theme => ({
     root: {
         boxShadow: 'none',
-        background: '#FF4500'
+        background: '#FC4C02'
     },
     flexGrow: {
         flexGrow: 1
