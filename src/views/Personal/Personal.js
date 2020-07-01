@@ -29,7 +29,11 @@ const Personal = () => {
             <Typography className={classes.title} color="textSecondary" gutterBottom>
                 Personal Settings
             </Typography>
-
+            <Grid
+                item
+                md={7}
+                xs={12}
+            >
             <Card className={classes.root}>
                 <CardContent>
                     <Typography variant="h5" className={classes.title} color="textSecondary" gutterBottom>
@@ -45,7 +49,15 @@ const Personal = () => {
                     </CardActions>
                 </CardContent>
             </Card>
+            </Grid>
+            <div>
 
+            </div>
+            <Grid
+                item
+                md={7}
+                xs={12}
+            >
             <Card className={classes.root}>
                 <CardContent>
                     <Typography  variant="h5" className={classes.title} color="textSecondary" gutterBottom>
@@ -60,7 +72,15 @@ const Personal = () => {
                 </CardContent>
 
             </Card>
+                <div>
 
+                </div>
+            </Grid>
+                <Grid
+                    item
+                    md={7}
+                    xs={12}
+                >
             <Card className={classes.root}>
                 <CardContent>
                     <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
@@ -74,6 +94,7 @@ const Personal = () => {
                     </Grid>
                 </CardActions>
             </Card>
+                </Grid>
         </div>
     );
 };

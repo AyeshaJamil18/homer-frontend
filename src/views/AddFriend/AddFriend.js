@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import SearchField from "react-search-field";
+import { UserService } from '../../service';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -15,9 +16,20 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+
+
+
+
+
 const AddFriend = () => {
     const classes = useStyles();
+    const [firstName, setFirstName] = React.useState('');
 
+    function on_Change(e)
+    {
+        setFirstName(UserService.getUserByUsername(e));
+        console.log (firstName);
+    }
     return (
         <div className={classes.root}>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -30,15 +42,20 @@ const AddFriend = () => {
                         Search Friend
                         <SearchField
                             placeholder="Search..."
-                            searchText=" search with name"
+                            searchText=""
                             classNames="test-class"
+                            onSearchClick={(e) => on_Change(e)}
                         />
 
                     </Typography>
 
                 </CardContent>
-
+                <div>
+                    {firstName}
+                </div>
             </Card>
+
+
         </div>
     );
 };

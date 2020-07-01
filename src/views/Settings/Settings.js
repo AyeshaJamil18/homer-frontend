@@ -15,6 +15,9 @@ const Settings = () => {
 
     return (
         <div className={classes.root}>
+
+
+
             <Grid
                 container
                 spacing={4}
@@ -24,15 +27,11 @@ const Settings = () => {
                     md={7}
                     xs={12}
                 >
+
                     <Notifications/>
+
                 </Grid>
-                <Grid
-                    item
-                    md={5}
-                    xs={12}
-                >
-                    <Password/>
-                </Grid>
+
             </Grid>
         </div>
     );
