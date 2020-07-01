@@ -16,6 +16,7 @@ import {
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
     LB as LB,
+    ViewFriend as ViewFriendsView,
 
 
 } from './views';
@@ -49,6 +50,15 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/AddFriend"
             />
+
+            <RouteWithLayout
+
+                component={ViewFriendsView}
+                exact
+                layout={MainLayout}
+                path="/ViewFriend"
+            />
+
             <RouteWithLayout
 
                 component={SettingsView}

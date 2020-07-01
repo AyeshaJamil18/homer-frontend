@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,15 +16,24 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-const HandleAddFriend = () => {
-
-
-};
-
-
-const Personal = () => {
+const Personal = props => {
     const classes = useStyles();
+    const { history } = props;
+
+    const HandleAddFriend = () => {
+
+        history.push({
+            pathname: '/AddFriend'
+        });
+    };
+
+    const HandleViewFriend = () => {
+
+        history.push({
+            pathname: '/ViewFriend'
+        });
+    };
+
 
     return (
         <div className={classes.root}>
@@ -42,9 +53,10 @@ const Personal = () => {
                     <CardActions>
                         <Grid direction = 'row' >
                             <Button size="small" onClick={HandleAddFriend}>
-                                View Friends
+                                Add Friends
                             </Button>
-                            <Button size="small">Add Friends</Button>
+                            <Button size="small" onClick={HandleViewFriend} >
+                                View  Friends</Button>
                         </Grid>
                     </CardActions>
                 </CardContent>
@@ -99,4 +111,7 @@ const Personal = () => {
     );
 };
 
-export default Personal;
+Personal.propTypes = {
+    history: PropTypes.object
+};
+export default withRouter(Personal);

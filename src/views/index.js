@@ -9,3 +9,4 @@ export { default as Personal } from './Personal';
 export { default as AddFriend } from './AddFriend';
 export { default as SharePlaylist } from './SharePlaylist';
 export { default as LB } from './LB';
+export { default as ViewFriend } from './ViewFriend';

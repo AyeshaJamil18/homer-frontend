@@ -16,12 +16,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-
-
-
-
-const AddFriend = () => {
+const ViewFriend = () => {
     const classes = useStyles();
     const [firstName, setFirstName] = React.useState('');
 
@@ -33,7 +28,7 @@ const AddFriend = () => {
     return (
         <div className={classes.root}>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Add Friend
+                View Friend
             </Typography>
             <Grid
                 item
@@ -43,17 +38,12 @@ const AddFriend = () => {
             <Card className={classes.root}>
                 <CardContent>
                     <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
-                        Search Friend
-                        <SearchField
-                            placeholder="Search..."
-                            searchText=""
-                            classNames="test-class"
-                            onSearchClick={(e) => on_Change(e)}
-                        />
+
 
                     </Typography>
 
                 </CardContent>
+
                 <div>
                     {firstName}
                 </div>
@@ -64,4 +54,4 @@ const AddFriend = () => {
     );
 };
 
-export default AddFriend;
+export default ViewFriend;
