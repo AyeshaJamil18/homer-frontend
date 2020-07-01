@@ -35,8 +35,8 @@ const Notifications = props => {
         >
             <form>
                 <CardHeader
-                    subheader="Manage the notifications"
-                    title="Notifications"
+                    subheader="Manage the reminder settings"
+                    title="Reminder Alerts"
                 />
                 <Divider/>
                 <CardContent>
@@ -48,7 +48,7 @@ const Notifications = props => {
                         <Grid
                             className={classes.item}
                             item
-                            md={4}
+                            md={8}
                             sm={6}
                             xs={12}
                         >
@@ -58,74 +58,15 @@ const Notifications = props => {
                             >
                                 Notifications
                             </Typography>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        defaultChecked //
-                                    />
-                                }
-                                label="Email"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        defaultChecked //
-                                    />
-                                }
-                                label="Push Notifications"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox color="primary"/>}
-                                label="Text Messages"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        defaultChecked //
-                                    />
-                                }
-                                label="Phone calls"
-                            />
+                            <div>
+                                <input type="radio" value="Male" name="gender" />  Remind me every
+                            </div>
+                            <div>
+                                <input type="radio" value="Female" name="gender" /> Remind me at fixed times
+                             </div>
+
                         </Grid>
-                        <Grid
-                            className={classes.item}
-                            item
-                            md={4}
-                            sm={6}
-                            xs={12}
-                        >
-                            <Typography
-                                gutterBottom
-                                variant="h6"
-                            >
-                                Messages
-                            </Typography>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        defaultChecked //
-                                    />
-                                }
-                                label="Email"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox color="primary"/>}
-                                label="Push Notifications"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        defaultChecked //
-                                    />
-                                }
-                                label="Phone calls"
-                            />
-                        </Grid>
+
                     </Grid>
                 </CardContent>
                 <Divider/>

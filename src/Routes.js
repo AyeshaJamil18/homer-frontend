@@ -5,19 +5,19 @@ import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 
 import {
-    Account as AccountView,
+    Personal as PersonalView,
+    AddFriend as AddFriendView,
     Dashboard as DashboardView,
-    DocumentView as DocumentView,
-    Editor as EditorView,
     Icons as IconsView,
-    MyDocumentList as MyDocumentListView,
     NotFound as NotFoundView,
-    PublicDocuments as PublicDocumentsView,
     Settings as SettingsView,
-    SharedDocuments as SharedDocumentsView,
     SignIn as SignInView,
     SignUp as SignUpView,
-    Typography as TypographyView
+    Typography as TypographyView,
+    SharePlaylist as SharePlaylistView,
+    LB as LB,
+
+
 } from './views';
 
 const Routes = () => {
@@ -35,22 +35,38 @@ const Routes = () => {
                 path="/dashboard"
             />
             <RouteWithLayout
-                component={MyDocumentListView}
+
+                component={PersonalView}
                 exact
                 layout={MainLayout}
-                path="/myDocuments"
+                path="/PersonalView"
+            />
+
+            <RouteWithLayout
+
+                component={AddFriendView}
+                exact
+                layout={MainLayout}
+                path="/AddFriend"
             />
             <RouteWithLayout
-                component={SharedDocumentsView}
+
+                component={SettingsView}
                 exact
                 layout={MainLayout}
-                path="/documentsSharedWithMe"
+                path="/SettingsView"
             />
             <RouteWithLayout
-                component={PublicDocumentsView}
+                component={SharePlaylistView}
                 exact
                 layout={MainLayout}
-                path="/sharedPublic"
+                path="/SharePlaylist"
+            />
+            <RouteWithLayout
+                component={LB}
+                exact
+                layout={MainLayout}
+                path="/LB"
             />
             <RouteWithLayout
                 component={TypographyView}
@@ -64,29 +80,12 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/icons"
             />
-            <RouteWithLayout
-                component={AccountView}
-                exact
-                layout={MainLayout}
-                path="/account"
-            />
+
             <RouteWithLayout
                 component={SettingsView}
                 exact
                 layout={MainLayout}
                 path="/settings"
-            />
-            <RouteWithLayout
-                component={EditorView}
-                exact
-                layout={MainLayout}
-                path="/editor"
-            />
-            <RouteWithLayout
-                component={DocumentView}
-                exact
-                layout={MainLayout}
-                path="/document/:id"
             />
             <RouteWithLayout
                 component={SignUpView}
