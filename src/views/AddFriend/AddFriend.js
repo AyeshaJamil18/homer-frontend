@@ -27,7 +27,7 @@ const AddFriend = () => {
 
     function on_Change(e)
     {
-        setFirstName(UserService.getUserByUsername(e));
+        setFirstName(UserService.apiFindUserByUsername(e));
         console.log (firstName);
     }
     return (
