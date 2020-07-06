@@ -13,6 +13,7 @@ import {
     Settings as SettingsView,
     SignIn as SignInView,
     SignUp as SignUpView,
+    AdminSignUp as AdminSignUpView,
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
     LB as LB,
@@ -102,6 +103,12 @@ const Routes = () => {
                 exact
                 layout={MinimalLayout}
                 path="/sign-up"
+            />
+            <RouteWithLayout
+                component={AdminSignUpView}
+                exact
+                layout={MinimalLayout}
+                path="/admin-sign-up"
             />
             <RouteWithLayout
                 component={SignInView}
