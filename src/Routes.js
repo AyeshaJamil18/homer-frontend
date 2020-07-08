@@ -7,7 +7,6 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 import {
     Personal as PersonalView,
     AddFriend as AddFriendView,
-    Account as AccountView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
@@ -18,9 +17,6 @@ import {
     SharePlaylist as SharePlaylistView,
     LB as LB,
     ViewFriend as ViewFriendsView,
-
-
-    SharePlaylist as SharePlaylistView,
     FriendRequest as FriendRequestView
 } from './views';
 
@@ -101,12 +97,7 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/icons"
             />
-            <RouteWithLayout
-                component={AccountView}
-                exact
-                layout={MainLayout}
-                path="/account"
-            />
+
             <RouteWithLayout
                 component={SettingsView}
                 exact
