@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import SearchField from "react-search-field";
 import { UserService } from '../../service';
+import { justifyContent } from '../../../node_modules__/@material-ui/system/es';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,11 +25,17 @@ const useStyles = makeStyles(theme => ({
 const AddFriend = () => {
     const classes = useStyles();
     const [firstName, setFirstName] = React.useState('');
+    const [showButton, setShowButton] = React.useState(false);
+
+    const users = [
+        {username: 'AY', name: 'Ayesha'},
+        {username: 'KT', name: 'kiran'}
+    ];
 
     function on_Change(e)
     {
-        setFirstName(UserService.getUserByUsername(e));
-        console.log (firstName);
+        //UserService.getUserByUsername(e).catch(response=> {console.log (response)});
+        setShowButton(true)
     }
     return (
         <div className={classes.root}>
@@ -53,10 +60,34 @@ const AddFriend = () => {
 
                     </Typography>
 
+
                 </CardContent>
                 <div>
                     {firstName}
                 </div>
+
+
+                {users.map(user  => {
+
+                    return (
+
+                        showButton ? (
+
+                            <div  >
+                                {user.username}
+
+                                <button>
+                                    Add Friend
+                                </button>
+                            </div>
+
+                            ) : null
+                    );
+                })}
+
+
+
+
             </Card>
             </Grid>
 
