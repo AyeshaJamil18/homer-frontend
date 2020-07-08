@@ -15,7 +15,8 @@ import {
     SignIn as SignInView,
     SignUp as SignUpView,
     Typography as TypographyView,
-    SharePlaylist as SharePlaylistView
+    SharePlaylist as SharePlaylistView,
+    FriendRequest as FriendRequestView
 } from './views';
 
 const Routes = () => {
@@ -46,6 +47,14 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/AddFriend"
+            />
+
+            <RouteWithLayout
+
+                component={FriendRequestView}
+                exact
+                layout={MainLayout}
+                path="/FriendRequest"
             />
             <RouteWithLayout
 

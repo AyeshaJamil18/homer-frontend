@@ -41,6 +41,7 @@ const Personal = () => {
                                 View Friends
                             </Button>
                             <Button size="small">Add Friends</Button>
+                            <Button size="small">Friend Requests</Button>
                         </Grid>
                     </CardActions>
                 </CardContent>

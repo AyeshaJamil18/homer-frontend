@@ -9,3 +9,4 @@ export { default as Typography } from './Typography';
 export { default as Personal } from './Personal';
 export { default as AddFriend } from './AddFriend';
 export { default as SharePlaylist } from './SharePlaylist';
+export { default as FriendRequest } from './FriendRequest';
