@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Switch } from 'react-router-dom';
 
 import { RouteWithLayout } from './components';
-import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+import { Main as MainLayout, Minimal as MinimalLayout, AdminMain as AdminMainLayout } from './layouts';
 
 import {
     Personal as PersonalView,
@@ -12,12 +12,15 @@ import {
     NotFound as NotFoundView,
     Settings as SettingsView,
     SignIn as SignInView,
+    AdminSignIn as AdminSignInView,
     SignUp as SignUpView,
     AdminSignUp as AdminSignUpView,
+    AdminDashboard as AdminDashboardView,
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
     LB as LB,
     ViewFriend as ViewFriendsView,
+
 
 
 } from './views';
@@ -35,6 +38,12 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/dashboard"
+            />
+            <RouteWithLayout
+                component={AdminDashboardView}
+                exact
+                layout={AdminMainLayout}
+                path="/Admin-Dashboard"
             />
             <RouteWithLayout
 
@@ -115,6 +124,12 @@ const Routes = () => {
                 exact
                 layout={MinimalLayout}
                 path="/sign-in"
+            />
+            <RouteWithLayout
+                component={AdminSignInView}
+                exact
+                layout={MinimalLayout}
+                path="/admin-sign-in"
             />
             <RouteWithLayout
                 component={NotFoundView}

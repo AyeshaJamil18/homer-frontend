@@ -37,7 +37,6 @@ const login = (email, password) => {
                 return resp.json()
                     .then(json => {
                         handleBearerToken(json);
-
                         return Promise.resolve(resp);
                     });
             } else {

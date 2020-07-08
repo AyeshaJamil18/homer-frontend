@@ -222,7 +222,7 @@ const SignUp = props => {
             formState.values.password)
             .then(() => {
                 history.push({
-                    pathname: '/dashboard'
+                    pathname: '/Admin-Dashboard'
                 });
 
             }).catch(response => {
@@ -449,7 +449,7 @@ const SignUp = props => {
                                     Have an account?{' '}
                                     <Link
                                         component={RouterLink}
-                                        to="/sign-in"
+                                        to="/admin-sign-in"
                                         variant="h6"
                                     >
                                        Admin Sign in
