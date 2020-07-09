@@ -16,9 +16,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+
 const Personal = props => {
     const classes = useStyles();
-    const { history } = props;
+const {history}= props;
 
     const HandleAddFriend = () => {
 
@@ -31,6 +32,12 @@ const Personal = props => {
 
         history.push({
             pathname: '/ViewFriend'
+        });
+    };
+    const HandleFriendRequest = () => {
+
+        history.push({
+            pathname: '/FriendRequest'
         });
     };
 
@@ -55,6 +62,9 @@ const Personal = props => {
                             <Button size="small" onClick={HandleAddFriend}>
                                 Add Friends
                             </Button>
+
+                            <Button size="small" onClick={HandleFriendRequest} >
+                                Friend Requests</Button>
                             <Button size="small" onClick={HandleViewFriend} >
                                 View  Friends</Button>
                         </Grid>
