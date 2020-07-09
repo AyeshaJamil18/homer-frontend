@@ -21,7 +21,7 @@ import {
     LB as LB,
     ViewFriend as ViewFriendsView,
 
-
+    FriendRequest as FriendRequestView
 
 } from './views';
 
@@ -69,6 +69,14 @@ const Routes = () => {
                 path="/ViewFriend"
             />
 
+
+            <RouteWithLayout
+
+                component={FriendRequestView}
+                exact
+                layout={MainLayout}
+                path="/FriendRequest"
+            />
             <RouteWithLayout
 
                 component={SettingsView}

@@ -50,13 +50,17 @@ const checkUserEmailExist = (userEmail) =>
     HttpService.get(baseURL + '/checkEmail/' + userEmail);
 
 
-const getUserByUsername = (username) =>
-    HttpService.get(baseURL + '/getUserByUsername/' + username);
+const apiFindUserByUsername = (username) =>
+    HttpService.get(baseURL + '/apiFindUserByUsername/' + username);
 
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
+
     getUserByUsername,
     getCurrentAdminData
+
+    apiFindUserByUsername
+
 };

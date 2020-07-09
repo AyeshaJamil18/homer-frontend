@@ -1,3 +1,4 @@
+
 export { default as Dashboard } from './Dashboard';
 export { default as AdminDashboard } from './AdminDashboard';
 export { default as Icons } from './Icons';
@@ -13,3 +14,4 @@ export { default as AddFriend } from './AddFriend';
 export { default as SharePlaylist } from './SharePlaylist';
 export { default as LB } from './LB';
 export { default as ViewFriend } from './ViewFriend';
+export { default as FriendRequest } from './FriendRequest';
