@@ -57,10 +57,7 @@ const apiFindUserByUsername = (username) =>
 export default {
     getCurrentUserData,
     checkUserEmailExist,
-
-    getUserByUsername,
-    getCurrentAdminData
-
+    getCurrentAdminData,
     apiFindUserByUsername
 
 };
