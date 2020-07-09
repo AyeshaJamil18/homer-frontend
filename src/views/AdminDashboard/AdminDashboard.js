@@ -199,15 +199,20 @@ const SignUp = props => {
                 console.log(res);
                 console.log('Video saved');
                 ErrorMessage = 'Video Saved';
-                handleClickOpen();
+                
                 history.push({
                     pathname: '/Admin-Dashboard'
                 });
+                handleClickOpen();
 
             }).catch(response => {
-                console.log('Video saved12');
+                
                 if (response.status==1212) {
                     ErrorMessage = 'Did not find Server';
+                    handleClickOpen();
+                }
+                else{
+                    ErrorMessage = 'video already exist';
                     handleClickOpen();
                 }
             });
@@ -225,7 +230,7 @@ const SignUp = props => {
                 onClose={handleClose}
                 open={open}
             >
-                <DialogTitle id="alert-dialog-title">{'Video Save Error'}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{'Video'}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
 
