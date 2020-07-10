@@ -30,10 +30,17 @@ const getUserByUsername = (username) =>
     HttpService.get(baseURL + '/getUserByUsername/' + username);
 
 const searchUser = (match) => {
-    const matchObject = {
-        match: match
-    };
-    HttpService.get(baseURL + '/search/', matchObject);
+    return HttpService.get(baseURL + '/search/', match).then(resp => {
+        if (resp.status === 200) {
+            return resp.json()
+                .then(json => {
+
+                    return Promise.resolve(json);
+                });
+        } else {
+            return Promise.reject(resp);
+        }
+    });
 };
 
 

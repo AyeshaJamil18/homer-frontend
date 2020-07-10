@@ -32,10 +32,11 @@ const AddFriend = () => {
             .then(resp => resp.json())
             .then(data => {
                 //setSearchResults(data);
+                setShowButton(true)
                 console.log(data);
             })
             .catch(err => console.log(err));
-        setShowButton(true)
+       
     }
     return (
         <div className={classes.root}>
