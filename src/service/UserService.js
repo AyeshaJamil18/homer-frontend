@@ -1,5 +1,3 @@
-'use strict';
-
 import HttpService from './HttpService';
 import AuthService from './AuthService';
 
@@ -31,9 +29,17 @@ const checkUserEmailExist = (userEmail) =>
 const getUserByUsername = (username) =>
     HttpService.get(baseURL + '/getUserByUsername/' + username);
 
+const searchUser = (match) => {
+    const matchObject = {
+        match: match
+    };
+    HttpService.get(baseURL + '/search/', matchObject);
+};
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
-    getUserByUsername
+    getUserByUsername,
+    searchUser
 };

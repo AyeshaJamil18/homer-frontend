@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import SearchField from "react-search-field";
 import { UserService } from '../../service';
-import { justifyContent } from '../../../node_modules__/@material-ui/system/es';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,11 +15,6 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     }
 }));
-
-
-
-
-
 
 const AddFriend = () => {
     const classes = useStyles();
@@ -34,7 +28,13 @@ const AddFriend = () => {
 
     function on_Change(e)
     {
-        //UserService.getUserByUsername(e).catch(response=> {console.log (response)});
+        UserService.searchUser(e)
+            .then(resp => resp.json())
+            .then(data => {
+                //setSearchResults(data);
+                console.log(data);
+            })
+            .catch(err => console.log(err));
         setShowButton(true)
     }
     return (
