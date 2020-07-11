@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
@@ -23,8 +24,6 @@ const useStyles = makeStyles(theme => ({
 
 const Friends = () => {
     const classes = useStyles();
-    const [firstName, setFirstName] = React.useState('');
-    const [showButton, setShowButton] = React.useState(false);
     const [suggestions, setSuggestions] = React.useState([]);
 
     function on_Change(e) {
@@ -44,9 +43,10 @@ const Friends = () => {
     }
     return (
         <div className={classes.root}>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Add Friend
-            </Typography>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/profile"> Profile </Link>
+                <Typography color="text-primary"> Friends </Typography>
+            </Breadcrumbs>
             <Grid
                 item
                 md={7}

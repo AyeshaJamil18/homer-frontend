@@ -5,7 +5,7 @@ import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 
 import {
-    Personal as PersonalView,
+    Profile as ProfileView,
     Friends as FriendsView,
     Dashboard as DashboardView,
     Icons as IconsView,
@@ -36,10 +36,10 @@ const Routes = () => {
             />
             <RouteWithLayout
 
-                component={PersonalView}
+                component={ProfileView}
                 exact
                 layout={MainLayout}
-                path="/PersonalView"
+                path="/profile"
             />
             <RouteWithLayout
                 component={FriendsView}

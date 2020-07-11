@@ -5,7 +5,7 @@ export { default as Settings } from './Settings';
 export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as Typography } from './Typography';
-export { default as Personal } from './Personal';
+export { default as Profile } from './profile';
 export { default as Friends } from './friends';
 export { default as SharePlaylist } from './SharePlaylist';
 export { default as LB } from './LB';

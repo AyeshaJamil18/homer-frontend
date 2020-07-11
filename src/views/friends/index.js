@@ -1,1 +1,1 @@
-export { default } from './AddFriend.js';
+export { default } from './friends'
