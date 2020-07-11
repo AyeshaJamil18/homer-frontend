@@ -42,10 +42,18 @@ const searchUser = (match) => {
     });
 };
 
+const addFriend = (username) => {
+    const body = { username: username };
+
+    return HttpService.post(baseURL + '/addFriend', body)
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
     getUserByUsername,
-    searchUser
+    searchUser,
+    addFriend
 };

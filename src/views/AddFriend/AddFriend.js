@@ -28,8 +28,7 @@ const AddFriend = () => {
     const [showButton, setShowButton] = React.useState(false);
     const [suggestions, setSuggestions] = React.useState([]);
 
-    function on_Change(e)
-    {
+    function on_Change(e) {
         if (e == "") { setSuggestions([]); return; }
 
         UserService.searchUser(e)
@@ -38,6 +37,11 @@ const AddFriend = () => {
             }).catch((e) => {
                 console.error(e);
             });
+    }
+
+    function addFriend(e) {
+        UserService.addFriend(e)
+            .catch(e => console.error(e))
     }
     return (
         <div className={classes.root}>
@@ -74,7 +78,7 @@ const AddFriend = () => {
                                 secondary = {user.username}
                             />
                             <ListItemSecondaryAction>
-                                <Button> Add </Button>
+                                <Button onClick={() => addFriend(user.username) } > Add </Button>
                             </ListItemSecondaryAction>
                         </ListItem>
                     ))
