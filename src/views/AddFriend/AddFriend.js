@@ -24,6 +24,8 @@ const AddFriend = () => {
 
     function on_Change(e)
     {
+        if (e == "") { setSuggestions([]); return; }
+
         UserService.searchUser(e)
             .then((s) => {
                 setSuggestions(s);
@@ -62,9 +64,7 @@ const AddFriend = () => {
                 { suggestions.map((user)  => (
                         <div>
                             {user.username}
-                            <button>
-                                Add Friend
-                            </button>
+                            <button> Add </button>
                         </div>
                     ))
                 }
