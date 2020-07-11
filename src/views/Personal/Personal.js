@@ -20,17 +20,10 @@ const Personal = props => {
     const classes = useStyles();
     const { history } = props;
 
-    const HandleAddFriend = () => {
+    const HandleFriends = () => {
 
         history.push({
-            pathname: '/AddFriend'
-        });
-    };
-
-    const HandleViewFriend = () => {
-
-        history.push({
-            pathname: '/ViewFriend'
+            pathname: '/friends'
         });
     };
 
@@ -52,11 +45,7 @@ const Personal = props => {
                     </Typography>
                     <CardActions>
                         <Grid direction = 'row' >
-                            <Button size="small" onClick={HandleAddFriend}>
-                                Add Friends
-                            </Button>
-                            <Button size="small" onClick={HandleViewFriend} >
-                                View  Friends</Button>
+                            <Button size="small" onClick={HandleFriends}> Friends </Button>
                         </Grid>
                     </CardActions>
                 </CardContent>

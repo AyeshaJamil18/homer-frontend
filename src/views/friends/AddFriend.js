@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AddFriend = () => {
+const Friends = () => {
     const classes = useStyles();
     const [firstName, setFirstName] = React.useState('');
     const [showButton, setShowButton] = React.useState(false);
@@ -90,4 +89,4 @@ const AddFriend = () => {
     );
 };
 
-export default AddFriend;
+export default Friends;

@@ -6,7 +6,6 @@ export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as Typography } from './Typography';
 export { default as Personal } from './Personal';
-export { default as AddFriend } from './AddFriend';
+export { default as Friends } from './friends';
 export { default as SharePlaylist } from './SharePlaylist';
 export { default as LB } from './LB';
-export { default as ViewFriend } from './ViewFriend';
