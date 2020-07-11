@@ -20,23 +20,16 @@ const AddFriend = () => {
     const classes = useStyles();
     const [firstName, setFirstName] = React.useState('');
     const [showButton, setShowButton] = React.useState(false);
-
-    const users = [
-        {username: 'AY', name: 'Ayesha'},
-        {username: 'KT', name: 'kiran'}
-    ];
+    const [suggestions, setSuggestions] = React.useState([]);
 
     function on_Change(e)
     {
         UserService.searchUser(e)
-            .then(resp => resp.json())
-            .then(data => {
-                //setSearchResults(data);
-                setShowButton(true)
-                console.log(data);
-            })
-            .catch(err => console.log(err));
-       
+            .then((s) => {
+                setSuggestions(s);
+            }).catch((e) => {
+                console.error(e);
+            });
     }
     return (
         <div className={classes.root}>
@@ -56,9 +49,8 @@ const AddFriend = () => {
                             placeholder="Search..."
                             searchText=""
                             classNames="test-class"
-                            onSearchClick={(e) => on_Change(e)}
+                            onChange={(e) => on_Change(e)}
                         />
-
                     </Typography>
 
 
@@ -67,31 +59,17 @@ const AddFriend = () => {
                     {firstName}
                 </div>
 
-
-                {users.map(user  => {
-
-                    return (
-
-                        showButton ? (
-
-                            <div  >
-                                {user.username}
-
-                                <button>
-                                    Add Friend
-                                </button>
-                            </div>
-
-                            ) : null
-                    );
-                })}
-
-
-
-
+                { suggestions.map((user)  => (
+                        <div>
+                            {user.username}
+                            <button>
+                                Add Friend
+                            </button>
+                        </div>
+                    ))
+                }
             </Card>
             </Grid>
-
         </div>
     );
 };
