@@ -5,6 +5,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import SearchField from "react-search-field";
 import { UserService } from '../../service';
@@ -57,17 +63,23 @@ const AddFriend = () => {
 
 
                 </CardContent>
-                <div>
-                    {firstName}
-                </div>
-
-                { suggestions.map((user)  => (
-                        <div>
-                            {user.username}
-                            <button> Add </button>
-                        </div>
+                <List>
+                    { suggestions.map((user)  => (
+                        <ListItem>
+                            <ListItemAvatar>
+                                { /* TODO profile pic goes here */ }
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary = {user.firstName + " " + user.lastName}
+                                secondary = {user.username}
+                            />
+                            <ListItemSecondaryAction>
+                                <Button> Add </Button>
+                            </ListItemSecondaryAction>
+                        </ListItem>
                     ))
                 }
+                </List>
             </Card>
             </Grid>
         </div>
