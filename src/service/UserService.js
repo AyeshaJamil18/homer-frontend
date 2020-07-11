@@ -30,11 +30,10 @@ const getUserByUsername = (username) =>
     HttpService.get(baseURL + '/getUserByUsername/' + username);
 
 const searchUser = (match) => {
-    return HttpService.get(baseURL + '/search/', match).then(resp => {
+    return HttpService.get(baseURL + '/search/' + match).then(resp => {
         if (resp.status === 200) {
             return resp.json()
                 .then(json => {
-
                     return Promise.resolve(json);
                 });
         } else {
