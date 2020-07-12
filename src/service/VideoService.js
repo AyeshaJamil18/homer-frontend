@@ -29,24 +29,18 @@ const saveVideo = (VideoName, keywords, VideoURL, Duration, User) => {
 
 const GetVideoByTag = ( tag) => {
 
-    console.log("Before return")
-    return HttpService.get(baseURL + '/GetVideo/'+ tag)
+      return HttpService.get(baseURL + '/GetVideo/'+ tag)
         .then(resp => {
-            console.log("FIRST LOOP")
-            console.log(resp)
-
-            if (resp.status === 200) {
+              if (resp.status === 200) {
                 return resp.json()
                     .then(json => {
                         return Promise.resolve(json);
                     });
             } else {
-                console.log("IN last return")
                 return Promise.reject(resp);
             }
         });
 };
-
 
 export default {
     saveVideo,

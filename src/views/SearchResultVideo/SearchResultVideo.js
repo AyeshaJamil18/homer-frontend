@@ -12,20 +12,20 @@ const useStyles = makeStyles(theme => ({
 
 
 
-
+let DocumentList=[];
 const SearchResultVideo = props => {
     const classes = useStyles();
     let location = useLocation();
     let history = useHistory();
+
+
     const onSearchClick = () => {
 
 
         VideoService.GetVideoByTag(location.state.TagName)
             .then(data => {
-                console.log(data);
-                console.log(data.videoTitle)
-                console.log( data.videoUrl)
-
+                DocumentList=data;
+                console.log(DocumentList)
             })
             .catch((e) => {
                 console.log(e);
