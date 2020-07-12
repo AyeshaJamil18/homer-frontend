@@ -38,8 +38,7 @@ const GetVideoByTag = ( tag) => {
             if (resp.status === 200) {
                 return resp.json()
                     .then(json => {
-                        console.log("IN THEN Json")
-                        return Promise.resolve(resp);
+                        return Promise.resolve(json);
                     });
             } else {
                 console.log("IN last return")
