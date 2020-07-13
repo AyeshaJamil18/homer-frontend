@@ -19,15 +19,6 @@ const useStyles = makeStyles(theme => ({
 
 const Profile = props => {
     const classes = useStyles();
-    const { history } = props;
-
-    const HandleFriends = () => {
-
-        history.push({
-            pathname: '/friends'
-        });
-    };
-
 
     return (
         <div className={classes.root}>
@@ -42,7 +33,7 @@ const Profile = props => {
                             <Typography variant="h5"> Friends </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={HandleFriends}> Manage </Button>
+                            <Button size="small" onClick={() => props.history.push('/friends')}> Manage </Button>
                         </CardActions>
                     </Card>
                 </Grid>
@@ -53,7 +44,7 @@ const Profile = props => {
                             <Typography variant="h5"> Groups </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={HandleFriends}> Manage </Button>
+                            <Button size="small" onClick={() => props.history.push('/groups')}> Manage </Button>
                         </CardActions>
                     </Card>
                 </Grid>

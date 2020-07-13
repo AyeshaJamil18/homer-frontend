@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Groups = () => {
+const Groups = props => {
     const classes = useStyles();
     const [memberGroups, setMemberGroups] = React.useState([]);
 
@@ -33,7 +33,7 @@ const Groups = () => {
     return (
         <div className={classes.root}>
             <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/profile"> Profile </Link>
+                <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
                 <Typography color="text-primary"> Groups </Typography>
             </Breadcrumbs>
             <Grid
