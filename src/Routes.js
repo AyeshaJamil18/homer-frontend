@@ -7,6 +7,7 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 import {
     Profile as ProfileView,
     Friends as FriendsView,
+    Groups as GroupsView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
@@ -46,6 +47,12 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/friends"
+            />
+            <RouteWithLayout
+                component={GroupsView}
+                exact
+                layout={MainLayout}
+                path="/groups"
             />
             <RouteWithLayout
 
