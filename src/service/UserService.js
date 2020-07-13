@@ -49,11 +49,18 @@ const addFriend = (username) => {
         .catch(e => console.error(e));
 }
 
+const groups = () => {
+    return HttpService.get(baseURL + '/groups')
+        .then(res => { return res.json(); })
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
     getUserByUsername,
     searchUser,
-    addFriend
+    addFriend,
+    groups
 };
