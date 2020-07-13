@@ -37,8 +37,8 @@ const Profile = props => {
             <Grid container spacing={3}>
                 <Grid item xs={2}>
                     <Card className={classes.root}>
-                        <CardContent>
-                            <Typography variant="h5" color="primary"> 21 </Typography>
+                        <CardContent style={{textAlign: 'center'}}>
+                            <Typography style={{fontSize: 42}} color="primary"> 21 </Typography>
                             <Typography variant="h5"> Friends </Typography>
                         </CardContent>
                         <CardActions>
@@ -48,8 +48,8 @@ const Profile = props => {
                 </Grid>
                 <Grid item xs={2}>
                     <Card className={classes.root}>
-                        <CardContent>
-                            <Typography variant="h5" color="primary"> 4 </Typography>
+                        <CardContent style={{textAlign: 'center'}}>
+                            <Typography style={{fontSize: 42}} color="primary"> 4 </Typography>
                             <Typography variant="h5"> Groups </Typography>
                         </CardContent>
                         <CardActions>
