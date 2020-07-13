@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { Breadcrumbs } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,30 +17,23 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Personal = props => {
+const Profile = props => {
     const classes = useStyles();
     const { history } = props;
 
-    const HandleAddFriend = () => {
+    const HandleFriends = () => {
 
         history.push({
-            pathname: '/AddFriend'
-        });
-    };
-
-    const HandleViewFriend = () => {
-
-        history.push({
-            pathname: '/ViewFriend'
+            pathname: '/friends'
         });
     };
 
 
     return (
         <div className={classes.root}>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Personal Settings
-            </Typography>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Typography color="text-primary"> Profile </Typography>
+            </Breadcrumbs>
             <Grid
                 item
                 md={7}
@@ -52,11 +46,7 @@ const Personal = props => {
                     </Typography>
                     <CardActions>
                         <Grid direction = 'row' >
-                            <Button size="small" onClick={HandleAddFriend}>
-                                Add Friends
-                            </Button>
-                            <Button size="small" onClick={HandleViewFriend} >
-                                View  Friends</Button>
+                            <Button size="small" onClick={HandleFriends}> Friends </Button>
                         </Grid>
                     </CardActions>
                 </CardContent>
@@ -111,7 +101,7 @@ const Personal = props => {
     );
 };
 
-Personal.propTypes = {
+Profile.propTypes = {
     history: PropTypes.object
 };
-export default withRouter(Personal);
+export default withRouter(Profile);

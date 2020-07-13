@@ -1,5 +1,3 @@
-'use strict';
-
 import HttpService from './HttpService';
 import AuthService from './AuthService';
 
@@ -31,9 +29,31 @@ const checkUserEmailExist = (userEmail) =>
 const getUserByUsername = (username) =>
     HttpService.get(baseURL + '/getUserByUsername/' + username);
 
+const searchUser = (match) => {
+    return HttpService.get(baseURL + '/search/' + match).then(resp => {
+        if (resp.status === 200) {
+            return resp.json()
+                .then(json => {
+                    return Promise.resolve(json);
+                });
+        } else {
+            return Promise.reject(resp);
+        }
+    });
+};
+
+const addFriend = (username) => {
+    const body = { username: username };
+
+    return HttpService.post(baseURL + '/addFriend', body)
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
-    getUserByUsername
+    getUserByUsername,
+    searchUser,
+    addFriend
 };
