@@ -31,30 +31,31 @@ const Groups = props => {
     }, [])
     
     return (
-        <div className={classes.root}>
-            <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
-                <Typography color="text-primary"> Groups </Typography>
-            </Breadcrumbs>
-            <Grid
-                item
-                md={7}
-                xs={12}
-            >
-            <Card className={classes.root}>
-                <List> { memberGroups.map((group) => (
-                    <ListItem>
-                    <ListItemAvatar>
-                        { /* TODO Group pictues */ }
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={ group }
-                    />
-                    </ListItem> ))}
-                </List>
-            </Card>
+        <Grid container spacing={3} className={classes.root}>
+            <Grid item xs={12}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
+                    <Typography color="text-primary"> Groups </Typography>
+                </Breadcrumbs>
             </Grid>
-        </div>
+            <Grid item md={7} xs={12}>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h3"> Your Groups </Typography>
+                        <List> { memberGroups.map((group) => (
+                            <ListItem>
+                            <ListItemAvatar>
+                                { /* TODO Group pictues */ }
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={ group }
+                            />
+                            </ListItem> ))}
+                        </List>
+                    </CardContent>
+                </Card>
+            </Grid>
+        </Grid>
     );
 };
 

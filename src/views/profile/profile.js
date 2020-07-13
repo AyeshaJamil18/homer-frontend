@@ -21,77 +21,65 @@ const Profile = props => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <Breadcrumbs aria-label="breadcrumb">
-                <Typography color="text-primary"> Profile </Typography>
-            </Breadcrumbs>
-            <Grid container spacing={3}>
-                <Grid item xs={2}>
-                    <Card className={classes.root}>
-                        <CardContent style={{textAlign: 'center'}}>
-                            <Typography style={{fontSize: 42}} color="primary"> 21 </Typography>
-                            <Typography variant="h5"> Friends </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" onClick={() => props.history.push('/friends')}> Manage </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xs={2}>
-                    <Card className={classes.root}>
-                        <CardContent style={{textAlign: 'center'}}>
-                            <Typography style={{fontSize: 42}} color="primary"> 4 </Typography>
-                            <Typography variant="h5"> Groups </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" onClick={() => props.history.push('/groups')}> Manage </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
+        <Grid container spacing={3} className={classes.root}>
+            <Grid item xs={12}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Typography color="text-primary"> Profile </Typography>
+                </Breadcrumbs>
             </Grid>
-            <Grid
-                item
-                md={7}
-                xs={12}
-            >
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography  variant="h5" className={classes.title} color="textSecondary" gutterBottom>
-                       PLAYLIST
-                    </Typography>
+            <Grid item xs={2}>
+                <Card>
+                    <CardContent style={{textAlign: 'center'}}>
+                        <Typography variant="h1" color="primary"> 21 </Typography>
+                        <Typography variant="h5"> Friends </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" onClick={() => props.history.push('/friends')}> Manage </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+            <Grid item xs={2}>
+                <Card className={classes.root}>
+                    <CardContent style={{textAlign: 'center'}}>
+                        <Typography variant="h1" color="primary"> 4 </Typography>
+                        <Typography variant="h5"> Groups </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" onClick={() => props.history.push('/groups')}> Manage </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+            <Grid item md={7} xs={12} >
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography  variant="h5" className={classes.title} color="textSecondary" gutterBottom>
+                            PLAYLIST
+                        </Typography>
+                        <CardActions>
+                            <Grid allign = 'row' >
+                                <Button size="small">Share Playlist</Button>
+                                <Button size="small">Create New Playlist</Button>
+                            </Grid>
+                        </CardActions>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item md={7} xs={12} >
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
+                            SETTINGS
+                        </Typography>
+
+                    </CardContent>
                     <CardActions>
                         <Grid allign = 'row' >
-                            <Button size="small">Share Playlist</Button>
-                            <Button size="small">Create New Playlist</Button>
+                            <Button size="small">View settings</Button>
                         </Grid>
                     </CardActions>
-                </CardContent>
-
-            </Card>
-                <div>
-
-                </div>
+                </Card>
             </Grid>
-                <Grid
-                    item
-                    md={7}
-                    xs={12}
-                >
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
-                        SETTINGS
-                    </Typography>
-
-                </CardContent>
-                <CardActions>
-                    <Grid allign = 'row' >
-                        <Button size="small">View settings</Button>
-                    </Grid>
-                </CardActions>
-            </Card>
-                </Grid>
-        </div>
+        </Grid>
     );
 };
 
