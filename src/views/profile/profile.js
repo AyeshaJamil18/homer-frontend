@@ -34,27 +34,30 @@ const Profile = props => {
             <Breadcrumbs aria-label="breadcrumb">
                 <Typography color="text-primary"> Profile </Typography>
             </Breadcrumbs>
-            <Grid
-                item
-                md={7}
-                xs={12}
-            >
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography variant="h5" className={classes.title} color="textSecondary" gutterBottom>
-                        FRIENDS
-                    </Typography>
-                    <CardActions>
-                        <Grid direction = 'row' >
-                            <Button size="small" onClick={HandleFriends}> Friends </Button>
-                        </Grid>
-                    </CardActions>
-                </CardContent>
-            </Card>
+            <Grid container spacing={3}>
+                <Grid item xs={2}>
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography variant="h5" color="primary"> 21 </Typography>
+                            <Typography variant="h5"> Friends </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small" onClick={HandleFriends}> Manage </Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
+                <Grid item xs={2}>
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography variant="h5" color="primary"> 4 </Typography>
+                            <Typography variant="h5"> Groups </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small" onClick={HandleFriends}> Manage </Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
             </Grid>
-            <div>
-
-            </div>
             <Grid
                 item
                 md={7}
