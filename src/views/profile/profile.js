@@ -27,7 +27,7 @@ const Profile = props => {
                     <Typography color="text-primary"> Profile </Typography>
                 </Breadcrumbs>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={5} sm={4} md={3} lg={2}>
                 <Card>
                     <CardContent style={{textAlign: 'center'}}>
                         <Typography variant="h1" color="primary"> 21 </Typography>
@@ -38,8 +38,8 @@ const Profile = props => {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={2}>
-                <Card className={classes.root}>
+            <Grid item xs={5} sm={4} md={3} lg={2}>
+                <Card>
                     <CardContent style={{textAlign: 'center'}}>
                         <Typography variant="h1" color="primary"> 4 </Typography>
                         <Typography variant="h5"> Groups </Typography>

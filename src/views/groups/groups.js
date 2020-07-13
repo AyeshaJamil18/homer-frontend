@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
@@ -38,18 +39,34 @@ const Groups = props => {
                     <Typography color="text-primary"> Groups </Typography>
                 </Breadcrumbs>
             </Grid>
+            <Grid item xs={12}>
+                <Button color="primary"> Create new Group </Button>
+            </Grid>
+            <Grid item md={7} xs={12}>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h3"> Open Invitations </Typography>
+                        <List> { memberGroups.map((group) => (
+                            <ListItem>
+                                <ListItemAvatar>
+                                    { /* TODO Group pictues */ }
+                                </ListItemAvatar>
+                                <ListItemText />
+                            </ListItem> ))}
+                        </List>
+                    </CardContent>
+                </Card>
+            </Grid>
             <Grid item md={7} xs={12}>
                 <Card>
                     <CardContent>
                         <Typography variant="h3"> Your Groups </Typography>
                         <List> { memberGroups.map((group) => (
                             <ListItem>
-                            <ListItemAvatar>
-                                { /* TODO Group pictues */ }
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={ group }
-                            />
+                                <ListItemAvatar>
+                                    { /* TODO Group pictues */ }
+                                </ListItemAvatar>
+                                <ListItemText primary={ group } />
                             </ListItem> ))}
                         </List>
                     </CardContent>
