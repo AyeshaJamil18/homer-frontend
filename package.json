@@ -69,6 +69,7 @@
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.0",
     "prettier-eslint-cli": "^5.0.0",
+    "react-player": "^2.5.0",
     "typescript": "^3.7.2"
   }
 }
