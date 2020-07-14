@@ -10,9 +10,11 @@ import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { UserService } from '../../service';
+import { GroupService } from '../../service';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,13 +28,27 @@ const Groups = props => {
     const [memberGroups, setMemberGroups] = React.useState([]);
     const [inviteGroups, setInviteGroups] = React.useState([]);
 
-    useEffect(() => {
+    useEffect(() => { loadGroups(); }, []);
+
+    function loadGroups() {
         UserService.groups()
             .then(groups => { 
                 setMemberGroups(groups.member);
                 setInviteGroups(groups.invited);
             }).catch(e => console.error(e));
-    }, [])
+    }
+
+    function join(e) {
+        GroupService.join(e)
+            .catch(e => console.error(e));
+        loadGroups();
+    }
+
+    function leave(e) {
+        GroupService.leave(e)
+            .catch(e => console.error(e));
+        loadGroups();
+    }
     
     return (
         <Grid container spacing={3} className={classes.root}>
@@ -55,6 +71,9 @@ const Groups = props => {
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
                                 <ListItemText primary={ group.title } />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => join(group.title) } > Join </Button>
+                                </ListItemSecondaryAction>
                             </ListItem> ))}
                         </List>
                     </CardContent>
@@ -70,6 +89,9 @@ const Groups = props => {
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
                                 <ListItemText primary={ group.title } />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => leave(group.title) } > Leave </Button>
+                                </ListItemSecondaryAction>
                             </ListItem> ))}
                         </List>
                     </CardContent>
