@@ -33,6 +33,7 @@ const Groups = props => {
     const [memberGroups, setMemberGroups] = React.useState([]);
     const [inviteGroups, setInviteGroups] = React.useState([]);
     const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
+    const [createDialogTitle, setCreateDialogTitle] = React.useState("");
     const [createDialogSuggestions, setCreateDialogSuggestions] = React.useState([]);
     const [createDialogInvites, setCreateDialogInvites] = React.useState([]);
 
@@ -59,7 +60,7 @@ const Groups = props => {
     }
 
     function create(title, invited) {
-        GroupService.create(title, invited)
+        GroupService.create(title, invited.map(i => (i.username)))
             .catch(e => console.error(e));
         loadGroups();
     }
@@ -133,11 +134,12 @@ const Groups = props => {
                     </CardContent>
                 </Card>
             </Grid>
-            <Dialog open={createDialogOpen} onClose={() => setCreateDialogOpen(false)}>
+            <Dialog fullWidth open={createDialogOpen} onClose={() => setCreateDialogOpen(false)}>
                 <DialogTitle onClose={() => setCreateDialogOpen(false)}> Create Group </DialogTitle>
                 <DialogContent dividers>
-                    <TextField required id="createDialogTitle" label="Title"/>
-                    <TextField id="createDialogSearch" label="Invite" onChange={(e) => createDialogSearch(e.target.value)}/>
+                    <TextField required fullWidth autoFocus label="Title" onChange={(e) => setCreateDialogTitle(e.target.value)}/>
+                    <Typography variant="h5"> Invite </Typography>
+                    <TextField label="Search" onChange={(e) => createDialogSearch(e.target.value)}/>
                     <List>
                         { createDialogSuggestions.map((user)  => (
                             <ListItem>
@@ -172,7 +174,7 @@ const Groups = props => {
                     </List>
                 </DialogContent>
                 <DialogActions>
-                    <Button> Create </Button>
+                    <Button onClick={() => create(createDialogTitle, createDialogInvites)}> Create </Button>
                 </DialogActions>
             </Dialog>
         </Grid>
