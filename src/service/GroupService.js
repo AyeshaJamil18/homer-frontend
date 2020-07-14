@@ -15,7 +15,19 @@ const leave = (group) => {
         .catch(e => console.error(e));
 }
 
+const create = (title, invited) => {
+    const reqObject = {
+        title: title,
+        invited: invited
+    };
+
+    return HttpService.post(baseURL + '/create', reqObject)
+        .then(res => { console.debug(res); })
+        .catch(e => console.error(e));
+}
+
 export default {
     join,
-    leave
+    leave,
+    create
 };

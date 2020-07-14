@@ -33,6 +33,8 @@ const Groups = props => {
     const [memberGroups, setMemberGroups] = React.useState([]);
     const [inviteGroups, setInviteGroups] = React.useState([]);
     const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
+    const [createDialogSuggestions, setCreateDialogSuggestions] = React.useState([]);
+    const [createDialogInvites, setCreateDialogInvites] = React.useState([]);
 
     useEffect(() => { loadGroups(); }, []);
 
@@ -54,6 +56,34 @@ const Groups = props => {
         GroupService.leave(e)
             .catch(e => console.error(e));
         loadGroups();
+    }
+
+    function create(title, invited) {
+        GroupService.create(title, invited)
+            .catch(e => console.error(e));
+        loadGroups();
+    }
+
+    function createDialogSearch(search) {
+        if (search == "") { setCreateDialogSuggestions([]); return; }
+        UserService.searchUser(search)
+            .then((s) => {
+                setCreateDialogSuggestions(s);
+            }).catch((e) => {
+                console.error(e);
+            });
+    }
+    function createDialogAddInvite(user) {
+        setCreateDialogInvites([user].concat(createDialogInvites));
+    }
+    function createDialogRemoveInvite(username) {
+        var newinvites = [];
+        createDialogInvites.map(invite => { 
+            if (invite.username != username) {
+                newinvites.push(invite);
+            }
+        })
+        setCreateDialogInvites(newinvites);
     }
     
     return (
@@ -105,8 +135,41 @@ const Groups = props => {
             </Grid>
             <Dialog open={createDialogOpen} onClose={() => setCreateDialogOpen(false)}>
                 <DialogTitle onClose={() => setCreateDialogOpen(false)}> Create Group </DialogTitle>
-                <DialogContent>
-                    <TextField required label="Title"/>
+                <DialogContent dividers>
+                    <TextField required id="createDialogTitle" label="Title"/>
+                    <TextField id="createDialogSearch" label="Invite" onChange={(e) => createDialogSearch(e.target.value)}/>
+                    <List>
+                        { createDialogSuggestions.map((user)  => (
+                            <ListItem>
+                                <ListItemAvatar>
+                                    { /* TODO profile pic goes here */ }
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary = {user.firstName + " " + user.lastName}
+                                    secondary = {user.username}
+                                />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => createDialogAddInvite(user)}> Invite </Button>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <List>
+                        { createDialogInvites.map((user)  => (
+                            <ListItem>
+                                <ListItemAvatar>
+                                    { /* TODO profile pic goes here */ }
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary = {user.firstName + " " + user.lastName}
+                                    secondary = {user.username}
+                                />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => createDialogRemoveInvite(user.username)}> Remove </Button>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                    </List>
                 </DialogContent>
                 <DialogActions>
                     <Button> Create </Button>
