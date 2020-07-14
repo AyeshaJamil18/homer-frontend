@@ -5,6 +5,9 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
@@ -12,9 +15,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { UserService } from '../../service';
 import { GroupService } from '../../service';
+import { DialogActions } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,6 +32,7 @@ const Groups = props => {
     const classes = useStyles();
     const [memberGroups, setMemberGroups] = React.useState([]);
     const [inviteGroups, setInviteGroups] = React.useState([]);
+    const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
 
     useEffect(() => { loadGroups(); }, []);
 
@@ -59,7 +65,7 @@ const Groups = props => {
                 </Breadcrumbs>
             </Grid>
             <Grid item xs={12}>
-                <Button variant="contained" color="primary"> Create new Group </Button>
+                <Button variant="contained" color="primary" onClick={() => setCreateDialogOpen(true)}> Create new Group </Button>
             </Grid>
             <Grid item md={7} xs={12}>
                 <Card>
@@ -97,6 +103,15 @@ const Groups = props => {
                     </CardContent>
                 </Card>
             </Grid>
+            <Dialog open={createDialogOpen} onClose={() => setCreateDialogOpen(false)}>
+                <DialogTitle onClose={() => setCreateDialogOpen(false)}> Create Group </DialogTitle>
+                <DialogContent>
+                    <TextField required label="Title"/>
+                </DialogContent>
+                <DialogActions>
+                    <Button> Create </Button>
+                </DialogActions>
+            </Dialog>
         </Grid>
     );
 };
