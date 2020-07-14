@@ -24,11 +24,14 @@ const useStyles = makeStyles(theme => ({
 const Groups = props => {
     const classes = useStyles();
     const [memberGroups, setMemberGroups] = React.useState([]);
+    const [inviteGroups, setInviteGroups] = React.useState([]);
 
     useEffect(() => {
         UserService.groups()
-            .then(groups => { setMemberGroups(groups); })
-            .catch(e => console.error(e));
+            .then(groups => { 
+                setMemberGroups(groups.member);
+                setInviteGroups(groups.invited);
+            }).catch(e => console.error(e));
     }, [])
     
     return (
@@ -40,18 +43,18 @@ const Groups = props => {
                 </Breadcrumbs>
             </Grid>
             <Grid item xs={12}>
-                <Button color="primary"> Create new Group </Button>
+                <Button variant="contained" color="primary"> Create new Group </Button>
             </Grid>
             <Grid item md={7} xs={12}>
                 <Card>
                     <CardContent>
                         <Typography variant="h3"> Open Invitations </Typography>
-                        <List> { memberGroups.map((group) => (
+                        <List> { inviteGroups.map((group) => (
                             <ListItem>
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
-                                <ListItemText />
+                                <ListItemText primary={ group.title } />
                             </ListItem> ))}
                         </List>
                     </CardContent>
@@ -66,7 +69,7 @@ const Groups = props => {
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
-                                <ListItemText primary={ group } />
+                                <ListItemText primary={ group.title } />
                             </ListItem> ))}
                         </List>
                     </CardContent>
