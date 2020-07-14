@@ -2,11 +2,16 @@ FROM node:13-alpine
 EXPOSE 8000
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY yarn.lock ./
+ENV PORT=8000
+ENV REACT_APP_USER_JWT="e75ff3a22420494780560c767f053198e79b103e093f4292b1ab9b0fd11c500e"
+ENV REACT_APP_BACKEND_API_URL=http://localhost:3000
+ENV REACT_APP_FILE_SIZE_LIMIT=10485760
+ENV REACT_APP_FILE_COLUMN_COUNT_LIMIT=50
 
-RUN yarn
+COPY package*.json ./
 
-ADD . .
+RUN npm install
 
-CMD ["yarn", "start"]
+COPY . ./
+
+CMD ["npm", "start"]
