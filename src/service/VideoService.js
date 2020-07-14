@@ -31,6 +31,7 @@ const GetvideoOfTheDay = () => {
     return HttpService.get(baseURL + '/GetVideoOfDay')
         .then(resp => {
             if (resp.status === 200) {
+                console.log(resp);
                 return resp.json()
                     .then(json => {
                         return Promise.resolve(json);
