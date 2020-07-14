@@ -26,7 +26,23 @@ const saveVideo = (VideoName, keywords, VideoURL, Duration, User) => {
         });
 };
 
+const GetvideoOfTheDay = () => {
+
+    return HttpService.get(baseURL + '/GetVideoOfDay')
+        .then(resp => {
+            if (resp.status === 200) {
+                return resp.json()
+                    .then(json => {
+                        return Promise.resolve(json);
+                    });
+            } else {
+                return Promise.reject(resp);
+            }
+        });
+};
+
 
 export default {
-    saveVideo
+    saveVideo,
+    GetvideoOfTheDay
 };

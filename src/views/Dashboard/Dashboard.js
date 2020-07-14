@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import { VideoService } from '../../service';
 
 
 const useStyles = makeStyles(theme => ({
@@ -9,25 +10,23 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const VideoOfTheDay = () => {
+    VideoService.GetvideoOfTheDay()
+        .then(data => {
+            console.log(data)
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+
+};
+
 const Dashboard = () => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Grid
-                container
-                spacing={4}
-            >
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                    xl={1}
-                    xs={12}
-                >
-
-                </Grid>
-            </Grid>
+            {VideoOfTheDay()}
         </div>
     );
 };
