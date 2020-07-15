@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import { VideoService } from '../../service';
-import ReactPlayer from "react-player"
+import ReactPlayer from 'react-player';
+import { Typography  } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,17 +35,29 @@ const SearchResultVideo = props => {
     };
     return (
         <div className={classes.root}>
-
+            <Typography
+                className={classes.name}
+                variant="h1"
+            >
+                Search results for {location.state.TagName}
+            </Typography>
             {documentList.map((document) => {
                 return (
                     showVideo ? (
                         <div  >
-                            this is wierd
+
+                            <Typography
+                                className={classes.name}
+                                variant="h4"
+                            >
                             {document.videoTitle}
-                            {document.videoUrl}
-                            {/*<ReactPlayer*/}
-                            {/*    url="https://www.youtube.com/watch?v=ug50zmP9I7s"*/}
-                            {/*/>*/}
+                            </Typography>
+                            <ReactPlayer
+                                height ='300%'
+                                width = '40%'
+
+                               url={document.videoUrl}
+                           />
                         </div>
                     ) : <div>
                         this is false
