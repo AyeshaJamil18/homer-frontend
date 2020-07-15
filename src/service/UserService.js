@@ -1,7 +1,12 @@
+'use strict';
+
 import HttpService from './HttpService';
 import AuthService from './AuthService';
+import AdminAuthService from './AdminAuthService';
+
 
 const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/user';
+const adminbaseURL = process.env.REACT_APP_BACKEND_API_URL + '/admin';
 
 const getCurrentUserData = () => {
     if (AuthService.isBearerTokenStillValid()) {
@@ -22,12 +27,31 @@ const getCurrentUserData = () => {
     }
 };
 
+const getCurrentAdminData = () => {
+    if (AdminAuthService.isBearerTokenStillValid()) {
+        return HttpService.get(adminbaseURL)
+            .then(resp => {
+                if (resp.status === 200) {
+                    return resp.json()
+                        .then(json => {
+
+                            return Promise.resolve(json);
+                        });
+                } else {
+                    return Promise.reject(resp);
+                }
+            });
+    } else {
+        return Promise.reject('User not logged in');
+    }
+};
+
 const checkUserEmailExist = (userEmail) =>
     HttpService.get(baseURL + '/checkEmail/' + userEmail);
 
 
-const getUserByUsername = (username) =>
-    HttpService.get(baseURL + '/getUserByUsername/' + username);
+const apiFindUserByUsername = (username) =>
+    HttpService.get(baseURL + '/apiFindUserByUsername/' + username);
 
 const searchUser = (match) => {
     return HttpService.get(baseURL + '/search/' + match).then(resp => {
@@ -53,7 +77,9 @@ const addFriend = (username) => {
 export default {
     getCurrentUserData,
     checkUserEmailExist,
-    getUserByUsername,
     searchUser,
-    addFriend
+    addFriend,
+    getCurrentAdminData,
+    apiFindUserByUsername
+
 };

@@ -1,6 +1,6 @@
 import HttpService from './HttpService';
 
-const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/auth';
+const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/AdminAuth';
 
 const jwtDecode = require('jwt-decode');
 
@@ -37,6 +37,7 @@ const login = (email, password) => {
                 return resp.json()
                     .then(json => {
                         handleBearerToken(json);
+
                         return Promise.resolve(resp);
                     });
             } else {
