@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import Avatar from '@material-ui/core/Avatar';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Button from '@material-ui/core/Button'
@@ -75,6 +76,7 @@ const Groups = props => {
             });
     }
     function createDialogAddInvite(user) {
+        if (user == null) { return; }
         setCreateDialogInvites([user].concat(createDialogInvites));
     }
     function createDialogRemoveInvite(username) {
@@ -138,24 +140,21 @@ const Groups = props => {
                 <DialogTitle onClose={() => setCreateDialogOpen(false)}> Create Group </DialogTitle>
                 <DialogContent dividers>
                     <TextField required fullWidth autoFocus label="Title" onChange={(e) => setCreateDialogTitle(e.target.value)}/>
-                    <Typography variant="h5"> Invite </Typography>
-                    <TextField label="Search" onChange={(e) => createDialogSearch(e.target.value)}/>
-                    <List>
-                        { createDialogSuggestions.map((user)  => (
-                            <ListItem>
-                                <ListItemAvatar>
-                                    { /* TODO profile pic goes here */ }
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary = {user.firstName + " " + user.lastName}
-                                    secondary = {user.username}
-                                />
-                                <ListItemSecondaryAction>
-                                    <Button onClick={() => createDialogAddInvite(user)}> Invite </Button>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        ))}
-                    </List>
+                    <Autocomplete
+                        freeSolo 
+                        options={createDialogSuggestions}
+                        getOptionLabel={user => (user.firstName + ' ' + user.lastName)}
+                        onChange={(event, value) => { createDialogAddInvite(value); }}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                onChange={(e) => createDialogSearch(e.target.value)}
+                                label="Invite"
+                                placeholder="search"
+                                InputProps={{ ...params.InputProps, type: 'search' }}
+                            />
+                        )}
+                    />
                     <List>
                         { createDialogInvites.map((user)  => (
                             <ListItem>
@@ -174,7 +173,7 @@ const Groups = props => {
                     </List>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => create(createDialogTitle, createDialogInvites)}> Create </Button>
+                    <Button color="primary" onClick={() => create(createDialogTitle, createDialogInvites)}> Create </Button>
                 </DialogActions>
             </Dialog>
         </Grid>
