@@ -8,6 +8,7 @@ import {
     Profile as ProfileView,
     Friends as FriendsView,
     Groups as GroupsView,
+    GroupDetails as GroupDetailsView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
@@ -53,6 +54,12 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/groups"
+            />
+            <RouteWithLayout
+                component={GroupDetailsView}
+                exact
+                layout={MainLayout}
+                path="/groups/:title"
             />
             <RouteWithLayout
 

@@ -105,7 +105,7 @@ const Groups = props => {
                     <CardContent>
                         <Typography variant="h3"> Open Invitations </Typography>
                         <List> { inviteGroups.map((group) => (
-                            <ListItem>
+                            <ListItem button onClick={() => props.history.push('/groups/' + group.title)}>
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
@@ -123,7 +123,7 @@ const Groups = props => {
                     <CardContent>
                         <Typography variant="h3"> Your Groups </Typography>
                         <List> { memberGroups.map((group) => (
-                            <ListItem>
+                            <ListItem button onClick={() => props.history.push('/groups/' + group.title)}>
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
