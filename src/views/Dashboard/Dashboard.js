@@ -42,8 +42,6 @@ const Dashboard = props => {
                 Video_URL=data[0]['videoUrl'];
                 handlesetVideoName(Video_Name);
                 handlesetVideoURL(Video_URL);
-
-
             })
             .catch((e) => {
                 console.log(e);
