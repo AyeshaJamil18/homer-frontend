@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Friends = () => {
+const Friends = props => {
     const classes = useStyles();
     const [suggestions, setSuggestions] = React.useState([]);
 
@@ -44,7 +44,7 @@ const Friends = () => {
     return (
         <div className={classes.root}>
             <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/profile"> Profile </Link>
+                <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
                 <Typography color="text-primary"> Friends </Typography>
             </Breadcrumbs>
             <Grid

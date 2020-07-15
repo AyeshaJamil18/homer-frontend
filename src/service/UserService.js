@@ -50,8 +50,8 @@ const checkUserEmailExist = (userEmail) =>
     HttpService.get(baseURL + '/checkEmail/' + userEmail);
 
 
-const apiFindUserByUsername = (username) =>
-    HttpService.get(baseURL + '/apiFindUserByUsername/' + username);
+const getUserByUsername = (username) =>
+    HttpService.get(baseURL + '/getUserByUsername/' + username);
 
 const searchUser = (match) => {
     return HttpService.get(baseURL + '/search/' + match).then(resp => {
@@ -73,13 +73,19 @@ const addFriend = (username) => {
         .catch(e => console.error(e));
 }
 
+const groups = () => {
+    return HttpService.get(baseURL + '/groups')
+        .then(res => { return res.json(); })
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
+    getUserByUsername,
     searchUser,
     addFriend,
     getCurrentAdminData,
-    apiFindUserByUsername
-
+    groups
 };
