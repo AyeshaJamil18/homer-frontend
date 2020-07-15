@@ -31,8 +31,20 @@ const useStyles = makeStyles(theme => ({
 
 const Groups = props => {
     const classes = useStyles();
+    const [title, setTitle] = React.useState("");
     const [members, setMembers] = React.useState([]);
     const [invited, setInvited] = React.useState([]);
+
+    useEffect(() => { loadMembers(); }, []);
+
+    function loadMembers() {
+        GroupService.get(props.match.params.title)
+            .then(group => {
+                setTitle(group.title);
+                setMembers(group.members);
+                setInvited(group.invited);
+            }).catch(e => console.error(e));
+    }
     
     return (
         <Grid container spacing={3} className={classes.root}>
@@ -40,7 +52,7 @@ const Groups = props => {
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
                     <Link color="inherit" onClick={() => props.history.push('/groups')}> Groups </Link>
-                    <Typography color="text-primary"> {props.match.params.title} </Typography>
+                    <Typography color="text-primary"> {title} </Typography>
                 </Breadcrumbs>
             </Grid>
             <Grid item xs={12}>
@@ -49,13 +61,15 @@ const Groups = props => {
             <Grid item md={7} xs={12}>
                 <Card>
                     <CardContent>
-                        <Typography variant="h3"> Open Invitations </Typography>
-                        <List> { invited.map((group) => (
+                        <Typography variant="h3"> Members </Typography>
+                        <List> { members.map((user) => (
                             <ListItem>
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
-                                <ListItemText primary={ group.title } />
+                                <ListItemText 
+                                    primary={ user.firstName + ' ' + user.lastName }
+                                    secondary={user.username} />
                                 <ListItemSecondaryAction>
                                     <Button> Join </Button>
                                 </ListItemSecondaryAction>
@@ -67,13 +81,15 @@ const Groups = props => {
             <Grid item md={7} xs={12}>
                 <Card>
                     <CardContent>
-                        <Typography variant="h3"> Your Groups </Typography>
-                        <List> { members.map((group) => (
+                        <Typography variant="h3"> Invited </Typography>
+                        <List> { invited.map((user) => (
                             <ListItem>
                                 <ListItemAvatar>
                                     { /* TODO Group pictues */ }
                                 </ListItemAvatar>
-                                <ListItemText primary={ group.title } />
+                                <ListItemText 
+                                    primary={ user.firstName + ' ' + user.lastName }
+                                    secondary={user.username} />
                                 <ListItemSecondaryAction>
                                     <Button > Leave </Button>
                                 </ListItemSecondaryAction>

@@ -3,6 +3,12 @@ import AuthService from './AuthService';
 
 const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/group';
 
+const get = (group) => {
+    return HttpService.get(baseURL + '/' + group)
+        .then(res => { return res.json(); })
+        .catch(e => console.error(e));
+}
+
 const join = (group) => {
     return HttpService.post(baseURL + '/' + group + '/join')
         .then(res => { console.debug(res); })
@@ -27,6 +33,7 @@ const create = (title, invited) => {
 }
 
 export default {
+    get,
     join,
     leave,
     create
