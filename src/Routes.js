@@ -5,8 +5,8 @@ import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout, AdminMain as AdminMainLayout } from './layouts';
 
 import {
-    Personal as PersonalView,
-    AddFriend as AddFriendView,
+    Profile as ProfileView,
+    Friends as FriendsView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
@@ -19,7 +19,6 @@ import {
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
     LB as LB,
-    ViewFriend as ViewFriendsView,
 
     FriendRequest as FriendRequestView,
     SearchResultVideo as SearchResultVideoView
@@ -49,13 +48,23 @@ const Routes = () => {
 
             <RouteWithLayout
 
-                component={PersonalView}
+                component={ProfileView}
                 exact
                 layout={MainLayout}
-                path="/PersonalView"
+                path="/profile"
             />
 
             <RouteWithLayout
+                component={FriendsView}
+
+
+                exact
+                layout={MainLayout}
+                path="/friends"
+            />
+
+            <RouteWithLayout
+
 
                 component={SearchResultVideoView}
                 exact
@@ -63,30 +72,9 @@ const Routes = () => {
                 path="/SearchResultVideo"
             />
 
-            <RouteWithLayout
-
-                component={AddFriendView}
-                exact
-                layout={MainLayout}
-                path="/AddFriend"
-            />
-
-            <RouteWithLayout
-
-                component={ViewFriendsView}
-                exact
-                layout={MainLayout}
-                path="/ViewFriend"
-            />
 
 
-            <RouteWithLayout
 
-                component={FriendRequestView}
-                exact
-                layout={MainLayout}
-                path="/FriendRequest"
-            />
             <RouteWithLayout
 
                 component={SettingsView}

@@ -53,10 +53,32 @@ const checkUserEmailExist = (userEmail) =>
 const apiFindUserByUsername = (username) =>
     HttpService.get(baseURL + '/apiFindUserByUsername/' + username);
 
+const searchUser = (match) => {
+    return HttpService.get(baseURL + '/search/' + match).then(resp => {
+        if (resp.status === 200) {
+            return resp.json()
+                .then(json => {
+                    return Promise.resolve(json);
+                });
+        } else {
+            return Promise.reject(resp);
+        }
+    });
+};
+
+const addFriend = (username) => {
+    const body = { username: username };
+
+    return HttpService.post(baseURL + '/addFriend', body)
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
     checkUserEmailExist,
+    searchUser,
+    addFriend,
     getCurrentAdminData,
     apiFindUserByUsername
 
