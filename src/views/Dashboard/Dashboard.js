@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import { Typography  } from '@material-ui/core';
 import { VideoService } from '../../service';
-import ReactPlayer from "react-player"
+import ReactPlayer from 'react-player'
 
 let Video_Name='';
 let Video_URL='';
@@ -14,10 +14,6 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(4)
     }
 }));
-
-
-
-
 
 const Dashboard = props => {
 
@@ -65,7 +61,7 @@ const Dashboard = props => {
     return <div
         {...rest}
         className={clsx(classes.root, className)}
-    >
+           >
         <Typography
             className={classes.name}
             variant="h2"
@@ -80,7 +76,7 @@ const Dashboard = props => {
         </Typography>
 
         <ReactPlayer
-           url={Video_URL}
+            url={Video_URL}
         />
 
     </div>
