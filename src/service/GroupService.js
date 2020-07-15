@@ -9,6 +9,12 @@ const get = (group) => {
         .catch(e => console.error(e));
 }
 
+const invite = (group, user) => {
+    return HttpService.post(baseURL + '/' + group + '/invite/' + user)
+        .then(res => { console.debug(res); })
+        .catch(e => console.error(e));
+}
+
 const join = (group) => {
     return HttpService.post(baseURL + '/' + group + '/join')
         .then(res => { console.debug(res); })
@@ -34,6 +40,7 @@ const create = (title, invited) => {
 
 export default {
     get,
+    invite,
     join,
     leave,
     create
