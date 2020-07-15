@@ -21,7 +21,8 @@ import {
     LB as LB,
     ViewFriend as ViewFriendsView,
 
-    FriendRequest as FriendRequestView
+    FriendRequest as FriendRequestView,
+    SearchResultVideo as SearchResultVideoView
 
 } from './views';
 
@@ -45,12 +46,21 @@ const Routes = () => {
                 layout={AdminMainLayout}
                 path="/Admin-Dashboard"
             />
+
             <RouteWithLayout
 
                 component={PersonalView}
                 exact
                 layout={MainLayout}
                 path="/PersonalView"
+            />
+
+            <RouteWithLayout
+
+                component={SearchResultVideoView}
+                exact
+                layout={MainLayout}
+                path="/SearchResultVideo"
             />
 
             <RouteWithLayout
