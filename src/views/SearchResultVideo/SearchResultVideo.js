@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Grid,
+    Radio
+} from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import { VideoService } from '../../service';
 import ReactPlayer from 'react-player';
@@ -19,6 +28,16 @@ const SearchResultVideo = props => {
     let history = useHistory();
     const [showVideo, setshowVideo] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
 
     useEffect(() => { onSearchClick(); }, []);
 
@@ -41,6 +60,64 @@ const SearchResultVideo = props => {
             >
                 Search results for {location.state.TagName}
             </Typography>
+
+            <Dialog
+                aria-labelledby="form-dialog-title"
+                onClose={handleClose}
+                open={open}
+            >
+                <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Select the playlist  from the following:
+                    </DialogContentText>
+                    <Grid>
+                        <Radio
+                            //checked={selectedValue === 'None'}
+                            inputProps={{ 'aria-label': 'None' }}
+                            name="radio-button-demo"
+                            //onChange={handleRadioChange}
+                            value="None"
+                        />
+                        <label>None</label>
+                        <span className={classes.spacer}/>
+                    </Grid>
+                    {/* {selectedValue == 'None'} */}
+
+                    <Grid>
+                        <Radio
+                            //checked={selectedValue === 'Random Sort'}
+                            inputProps={{ 'aria-label': 'Random Sort' }}
+                            name="radio-button-demo"
+                            //onChange={handleRadioChange}
+                            value="Random Sort"
+                        />
+                        <label>Random Sort</label>
+                        <span className={classes.spacer}/>
+                    </Grid>
+                    {/* {selectedValue == 'Random'} */}
+
+
+
+
+
+
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        color="primary"
+
+                    >
+                        Save video
+                    </Button>
+                    <Button
+                        color="primary"
+                        onClick={handleClose}
+                    >
+                        Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
             {documentList.map((document) => {
                 return (
                     showVideo ? (
@@ -58,6 +135,10 @@ const SearchResultVideo = props => {
 
                                url={document.videoUrl}
                            />
+                            <Button
+                                onClick={() => handleClickOpen()}>
+                                Add to playlist
+                            </Button>
                         </div>
                     ) : <div>
                         this is false
