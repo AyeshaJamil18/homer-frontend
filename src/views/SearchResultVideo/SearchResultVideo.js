@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -12,25 +12,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
-let DocumentList={};
 const SearchResultVideo = props => {
     const classes = useStyles();
     let location = useLocation();
     let history = useHistory();
     const [showVideo, setshowVideo] = React.useState(false);
+    const [documentList, setDocumentList] = React.useState([]);
 
+    useEffect(() => { onSearchClick(); }, []);
 
     const onSearchClick = () => {
         VideoService.GetVideoByTag(location.state.TagName)
             .then(data => {
-                DocumentList=data;
-
+                setDocumentList(data.docs);
                 setshowVideo(true);
-                // Object.keys(DocumentList).map((position, index) => {
-                //     console.log( DocumentList[position][index].videoTitle)
-                // })
-                console.log(DocumentList)
             })
             .catch((e) => {
                 console.log(e);
@@ -40,19 +35,13 @@ const SearchResultVideo = props => {
     return (
         <div className={classes.root}>
 
-            {onSearchClick()}
-
-
-
-
-            {Object.keys(DocumentList).map((item,index) => {
-            //{DocumentList.Video.map((Video, index)  => {
+            {documentList.map((document) => {
                 return (
                     showVideo ? (
                         <div  >
                             this is wierd
-                            {DocumentList[item][index].videoTitle}
-                            {DocumentList[item][index].videoTitle}
+                            {document.videoTitle}
+                            {document.videoUrl}
                             {/*<ReactPlayer*/}
                             {/*    url="https://www.youtube.com/watch?v=ug50zmP9I7s"*/}
                             {/*/>*/}
