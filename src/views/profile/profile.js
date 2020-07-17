@@ -26,7 +26,7 @@ const Profile = props => {
     useEffect(() => {
         UserService.friends()
             .then(friends => { 
-                setCountFriends(friends.friends.length);
+                setCountFriends(friends.length);
             }).catch(e => console.error(e));
         UserService.groups()
             .then(groups => { 

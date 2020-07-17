@@ -38,8 +38,10 @@ const Friends = props => {
             }).catch(e => console.error(e));
     }
 
-    function remove() {
-
+    function remove(e) {
+        UserService.removeFriend(e)
+            .then(() => { loadFriends(); })
+            .catch(e => console.error(e))
     }
 
     function addFriendSearch(e) {

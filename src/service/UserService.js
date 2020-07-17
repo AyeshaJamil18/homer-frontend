@@ -49,6 +49,13 @@ const addFriend = (username) => {
         .catch(e => console.error(e));
 }
 
+const removeFriend = (username) => {
+    const body = { username: username };
+
+    return HttpService.post(baseURL + '/removeFriend', body)
+        .catch(e => console.error(e));
+}
+
 const groups = () => {
     return HttpService.get(baseURL + '/groups')
         .then(res => { return res.json(); })
@@ -68,6 +75,7 @@ export default {
     getUserByUsername,
     searchUser,
     addFriend,
+    removeFriend,
     groups,
     friends
 };
