@@ -55,6 +55,12 @@ const groups = () => {
         .catch(e => console.error(e));
 }
 
+const friends = () => {
+    return HttpService.get(baseURL + '/friends')
+        .then(res => { return res.json(); })
+        .catch(e => console.error(e));
+}
+
 
 export default {
     getCurrentUserData,
@@ -62,5 +68,6 @@ export default {
     getUserByUsername,
     searchUser,
     addFriend,
-    groups
+    groups,
+    friends
 };

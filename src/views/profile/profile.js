@@ -24,10 +24,10 @@ const Profile = props => {
     const [countGroups, setCountGroups] = React.useState(0);
 
     useEffect(() => {
-        /*UserService.friends()
+        UserService.friends()
             .then(friends => { 
-                setCountFriends(friends.length);
-            }).catch(e => console.error(e));*/
+                setCountFriends(friends.friends.length);
+            }).catch(e => console.error(e));
         UserService.groups()
             .then(groups => { 
                 setCountGroups(groups.member.length);
