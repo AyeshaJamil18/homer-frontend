@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +14,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import SearchField from "react-search-field";
+import TextField from '@material-ui/core/TextField';
 import { UserService } from '../../service';
 
 const useStyles = makeStyles(theme => ({
@@ -24,14 +26,27 @@ const useStyles = makeStyles(theme => ({
 
 const Friends = props => {
     const classes = useStyles();
-    const [suggestions, setSuggestions] = React.useState([]);
+    const [friends, setFriends] = React.useState([]);
+    const [addFriendSuggestions, setAddFriendSuggestions] = React.useState([]);
 
-    function on_Change(e) {
-        if (e == "") { setSuggestions([]); return; }
+    useEffect(() => { loadFriends(); }, []);
 
+    function loadFriends() {
+        UserService.friends()
+            .then(friends => {
+                setFriends(friends);
+            }).catch(e => console.error(e));
+    }
+
+    function remove() {
+
+    }
+
+    function addFriendSearch(e) {
+        if (e == "") { setAddFriendSuggestions([]); return; }
         UserService.searchUser(e)
             .then((s) => {
-                setSuggestions(s);
+                setAddFriendSuggestions(s);
             }).catch((e) => {
                 console.error(e);
             });
@@ -39,53 +54,55 @@ const Friends = props => {
 
     function addFriend(e) {
         UserService.addFriend(e)
+            .then(() => { loadFriends(); })
             .catch(e => console.error(e))
     }
     return (
-        <div className={classes.root}>
-            <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
-                <Typography color="text-primary"> Friends </Typography>
-            </Breadcrumbs>
-            <Grid
-                item
-                md={7}
-                xs={12}
-            >
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography className={classes.title}  variant="h5" color="textSecondary" gutterBottom>
-                        Search Friend
-                        <SearchField
-                            placeholder="Search..."
-                            searchText=""
-                            classNames="test-class"
-                            onChange={(e) => on_Change(e)}
-                        />
-                    </Typography>
-
-
-                </CardContent>
-                <List>
-                    { suggestions.map((user)  => (
-                        <ListItem>
-                            <ListItemAvatar>
-                                { /* TODO profile pic goes here */ }
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary = {user.firstName + " " + user.lastName}
-                                secondary = {user.username}
-                            />
-                            <ListItemSecondaryAction>
-                                <Button onClick={() => addFriend(user.username) } > Add </Button>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    ))
-                }
-                </List>
-            </Card>
+        <Grid container spacing={3} className={classes.root}>
+            <Grid item xs={12}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link color="inherit" onClick={() => props.history.push('/profile')}> Profile </Link>
+                    <Typography color="text-primary"> Friends </Typography>
+                </Breadcrumbs>
             </Grid>
-        </div>
+            <Grid item xs={12}>
+                <Autocomplete
+                        freeSolo 
+                        options={addFriendSuggestions}
+                        getOptionLabel={user => (user.firstName + ' ' + user.lastName)}
+                        onChange={(event, value) => { addFriend(value.username); }}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                onChange={(e) => addFriendSearch(e.target.value)}
+                                label="Invite"
+                                placeholder="search"
+                                InputProps={{ ...params.InputProps, type: 'search' }}
+                            />
+                        )}
+                    />
+            </Grid>
+            <Grid item md={7} xs={12}>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h3"> Your Friends </Typography>
+                        <List> { friends.map((friend) => (
+                            <ListItem>
+                                <ListItemAvatar>
+                                    { /* TODO Profile pictues */ }
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={ friend.firstName + ' ' + friend.lastName }
+                                    secondary={friend.username} />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => remove(friend.username) } > Remove </Button>
+                                </ListItemSecondaryAction>
+                            </ListItem> ))}
+                        </List>
+                    </CardContent>
+                </Card>
+            </Grid>
+        </Grid>
     );
 };
 
