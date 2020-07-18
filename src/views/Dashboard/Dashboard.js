@@ -87,10 +87,10 @@ const Dashboard = props => {
         console.log('after func');
         setOpen(true);
     };
-    const AddToSpecificPlaylist =(Playlist_name,Video_id) =>
+    const AddToSpecificPlaylist =(Playlist_name) =>
     {
-        console.log(Video_id);
-        PlaylistService.AddVideo(Playlist_name,Video_id);
+
+        PlaylistService.AddVideo(Playlist_name,VideoID);
         setOpen(false);
     };
 
@@ -184,7 +184,7 @@ const Dashboard = props => {
                                     primary = {document.title}
                                 />
                                 <ListItemSecondaryAction>
-                                    <Button onClick={() => AddToSpecificPlaylist(document.title,document._id) } > Add </Button>
+                                    <Button onClick={() => AddToSpecificPlaylist(document._id) } > Add </Button>
                                 </ListItemSecondaryAction>
                             </ListItem>
                         ))
