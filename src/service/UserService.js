@@ -71,26 +71,26 @@ const addFriend = (username) => {
 
     return HttpService.post(baseURL + '/addFriend', body)
         .catch(e => console.error(e));
-}
+};
 
 const removeFriend = (username) => {
     const body = { username: username };
 
     return HttpService.post(baseURL + '/removeFriend', body)
         .catch(e => console.error(e));
-}
+};
 
 const groups = () => {
     return HttpService.get(baseURL + '/groups')
         .then(res => { return res.json(); })
         .catch(e => console.error(e));
-}
+};
 
 const friends = () => {
     return HttpService.get(baseURL + '/friends')
         .then(res => { return res.json(); })
         .catch(e => console.error(e));
-}
+};
 
 
 const addXP = (xp) =>

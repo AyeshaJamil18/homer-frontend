@@ -14,8 +14,14 @@ import {
     Typography,
 
 } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 
-import { VideoService , UserService} from '../../service';
+import { VideoService , UserService, PlaylistService} from '../../service';
 import ReactPlayer from 'react-player'
 
 
@@ -43,6 +49,7 @@ const Dashboard = props => {
     const [VideoID, setVideoID] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open_videoEnd, setOpen_VideoEnd] = React.useState(false);
+    const [documentList, setDocumentList] = React.useState([]);
 
 
     const handlesetVideoName = () => {
@@ -60,12 +67,35 @@ const Dashboard = props => {
     const handleClose_videoEnd = () => {
         setOpen_VideoEnd(false);
     };
+
+    const GetUSerPlaylist = () =>{
+        PlaylistService.GetPlaylist()
+            .then(data => {
+                console.log(data);
+                console.log(data.docs);
+                setDocumentList(data.docs);
+                console.log(documentList);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
     const handleClickOpen = () => {
+        console.log('in handle click open');
+        GetUSerPlaylist();
+        console.log('after func');
         setOpen(true);
+    };
+    const AddToSpecificPlaylist =(Playlist_name,Video_id) =>
+    {
+        console.log(Video_id);
+        PlaylistService.AddVideo(Playlist_name,Video_id);
+        setOpen(false);
     };
 
     const VideoOfTheDay = () => {
-        return VideoService.GetvideoOfTheDay()
+        VideoService.GetvideoOfTheDay()
             .then(data => {
                 console.log(data);
                 console.log(JSON.stringify(data[0]['videoTitle']));
@@ -85,7 +115,7 @@ const Dashboard = props => {
     };
     useEffect( () => {
         const fetch = async () => {
-            await VideoOfTheDay();
+            await VideoOfTheDay()
         }
         fetch();
     },[count]);
@@ -147,38 +177,26 @@ const Dashboard = props => {
                     Select the playlist  from the following:
                 </DialogContentText>
                 <Grid>
-                    <Radio
-                        //checked={selectedValue === 'None'}
-                        inputProps={{ 'aria-label': 'None' }}
-                        name="radio-button-demo"
-                        //onChange={handleRadioChange}
-                        value="None"
-                    />
-                    <label>None</label>
-                    <span className={classes.spacer}/>
+                    <List>
+                        { documentList.map((document)  => (
+                            <ListItem>
+                                <ListItemText
+                                    primary = {document.title}
+                                />
+                                <ListItemSecondaryAction>
+                                    <Button onClick={() => AddToSpecificPlaylist(document.title,document._id) } > Add </Button>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))
+                        }
+                    </List>
                 </Grid>
+
                 {/* {selectedValue == 'None'} */}
 
-                <Grid>
-                    <Radio
-                        //checked={selectedValue === 'Random Sort'}
-                        inputProps={{ 'aria-label': 'Random Sort' }}
-                        name="radio-button-demo"
-                        //onChange={handleRadioChange}
-                        value="Random Sort"
-                    />
-                    <label>Random Sort</label>
-                    <span className={classes.spacer}/>
-                </Grid>
-                {/* {selectedValue == 'Random'} */}
 
             </DialogContent>
             <DialogActions>
-                <Button
-                    color="primary"
-                >
-                    Save video
-                </Button>
                 <Button
                     color="primary"
                     onClick={handleClose}
