@@ -93,6 +93,10 @@ const friends = () => {
 }
 
 
+const addXP = (xp) =>
+    HttpService.post(baseURL + '/addXp/' + xp);
+
+
 export default {
     getCurrentUserData,
     checkUserEmailExist,
@@ -102,5 +106,6 @@ export default {
     removeFriend,
     friends,
     getCurrentAdminData,
+    addXP,
     groups
 };
