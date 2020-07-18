@@ -45,9 +45,9 @@ const GetvideoOfTheDay = () => {
 
 const GetVideoByTag = ( tag) => {
 
-      return HttpService.get(baseURL + '/GetVideo/'+ tag)
+    return HttpService.get(baseURL + '/GetVideo/'+ tag)
         .then(resp => {
-              if (resp.status === 200) {
+            if (resp.status === 200) {
                 return resp.json()
                     .then(json => {
                         return Promise.resolve(json);
