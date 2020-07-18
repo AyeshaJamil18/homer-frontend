@@ -15,13 +15,14 @@ import {
 
 } from '@material-ui/core';
 
-import { VideoService } from '../../service';
+import { VideoService , UserService} from '../../service';
 import ReactPlayer from 'react-player'
 
 
 let Video_Name='';
 let Video_URL='';
 let Video_ID='';
+let Video_Duration='';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -63,17 +64,15 @@ const Dashboard = props => {
         setOpen(true);
     };
 
-
-
-
     const VideoOfTheDay = () => {
         return VideoService.GetvideoOfTheDay()
             .then(data => {
                 console.log(data);
                 console.log(JSON.stringify(data[0]['videoTitle']));
-                Video_Name=data[0]['videoTitle'];
-                Video_URL=data[0]['videoUrl'];
-                Video_ID = data[0]['_id'];
+                Video_Name          =data[0]['videoTitle'];
+                Video_URL           =data[0]['videoUrl'];
+                Video_ID           = data[0]['_id'];
+                Video_Duration      = data[0]['duration'];
                 console.log(Video_ID)
                 handlesetVideoName(Video_Name);
                 handlesetVideoURL(Video_URL);
@@ -84,7 +83,6 @@ const Dashboard = props => {
             });
 
     };
-
     useEffect( () => {
         const fetch = async () => {
             await VideoOfTheDay();
@@ -102,6 +100,7 @@ const Dashboard = props => {
     {
         console.log("This video has ended");
         setOpen_VideoEnd(false);
+        UserService.addXP(Video_Duration)
     };
 
 
@@ -118,7 +117,7 @@ const Dashboard = props => {
                 <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                       Add Video points to your profile:
+                       Add Video points {Video_Duration} to your profile:
                     </DialogContentText>
 
                 </DialogContent>
@@ -128,7 +127,6 @@ const Dashboard = props => {
                         onClick={AddPointsToRecords}
                     >
                        Yes
-
                     </Button>
                     <Button
                         color="primary"
@@ -138,8 +136,6 @@ const Dashboard = props => {
                     </Button>
                 </DialogActions>
             </Dialog>
-
-
         <Dialog
             aria-labelledby="form-dialog-title"
             onClose={handleClose}

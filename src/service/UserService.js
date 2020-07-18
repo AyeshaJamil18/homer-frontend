@@ -54,10 +54,15 @@ const apiFindUserByUsername = (username) =>
     HttpService.get(baseURL + '/apiFindUserByUsername/' + username);
 
 
+const addXP = (xp) =>
+    HttpService.post(baseURL + '/addXp/' + xp);
+
+
 export default {
     getCurrentUserData,
     checkUserEmailExist,
     getCurrentAdminData,
-    apiFindUserByUsername
+    apiFindUserByUsername,
+    addXP
 
 };
