@@ -93,12 +93,12 @@ const Dashboard = props => {
 
     const callonEnd = () =>
     {
-        console.log("This video has ended");
+        console.log('This video has ended');
         setOpen_VideoEnd(true);
     };
     const AddPointsToRecords = () =>
     {
-        console.log("This video has ended");
+        console.log('This video has ended');
         setOpen_VideoEnd(false);
         UserService.addXP(Video_Duration)
     };
@@ -107,35 +107,35 @@ const Dashboard = props => {
     return <div
         {...rest}
         className={clsx(classes.root, className)}
-    >
+           >
 
-            <Dialog
-                aria-labelledby="form-dialog-title"
-                onClose={handleClose_videoEnd}
-                open={open_videoEnd}
-            >
-                <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
+        <Dialog
+            aria-labelledby="form-dialog-title"
+            onClose={handleClose_videoEnd}
+            open={open_videoEnd}
+        >
+            <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
                        Add Video points {Video_Duration} to your profile:
-                    </DialogContentText>
+                </DialogContentText>
 
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        color="primary"
-                        onClick={AddPointsToRecords}
-                    >
+            </DialogContent>
+            <DialogActions>
+                <Button
+                    color="primary"
+                    onClick={AddPointsToRecords}
+                >
                        Yes
-                    </Button>
-                    <Button
-                        color="primary"
-                        onClick={handleClose_videoEnd}
-                    >
+                </Button>
+                <Button
+                    color="primary"
+                    onClick={handleClose_videoEnd}
+                >
                         No
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                </Button>
+            </DialogActions>
+        </Dialog>
         <Dialog
             aria-labelledby="form-dialog-title"
             onClose={handleClose}
@@ -203,12 +203,13 @@ const Dashboard = props => {
         </Typography>
 
         <ReactPlayer
-            controls={true}
-            onEnded={ callonEnd}
+            controls
+            onEnded={callonEnd}
             url={Video_URL}
         />
         <Button
-            onClick={() => handleClickOpen()}>
+            onClick={() => handleClickOpen()}
+        >
             Add to playlist
         </Button>
 

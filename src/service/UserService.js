@@ -96,6 +96,9 @@ const friends = () => {
 const addXP = (xp) =>
     HttpService.post(baseURL + '/addXp/' + xp);
 
+const CreatePlaylist = (PlaylistName) =>
+    HttpService.post(baseURL + '/CreatePlaylist/' + PlaylistName);
+
 
 export default {
     getCurrentUserData,
@@ -107,5 +110,6 @@ export default {
     friends,
     getCurrentAdminData,
     addXP,
-    groups
+    groups,
+    CreatePlaylist
 };
