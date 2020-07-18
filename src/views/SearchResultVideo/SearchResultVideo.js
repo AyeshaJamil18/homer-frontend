@@ -33,6 +33,11 @@ const SearchResultVideo = props => {
             });
 
     };
+
+    const callonEnd = () =>
+    {
+                console.log("This video has ended");
+    };
     return (
         <div className={classes.root}>
             <Typography
@@ -55,7 +60,8 @@ const SearchResultVideo = props => {
                             <ReactPlayer
                                 height ='300%'
                                 width = '40%'
-
+                                onEnded={ callonEnd}
+                                controls={ true}
                                url={document.videoUrl}
                            />
                         </div>

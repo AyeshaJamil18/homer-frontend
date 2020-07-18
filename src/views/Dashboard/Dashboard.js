@@ -41,6 +41,8 @@ const Dashboard = props => {
     const [VideoURL, setVideoURL] = React.useState('');
     const [VideoID, setVideoID] = React.useState('');
     const [open, setOpen] = React.useState(false);
+    const [open_videoEnd, setOpen_VideoEnd] = React.useState(false);
+
 
     const handlesetVideoName = () => {
         setVideoName(Video_Name);
@@ -54,7 +56,9 @@ const Dashboard = props => {
     const handleClose = () => {
         setOpen(false);
     };
-
+    const handleClose_videoEnd = () => {
+        setOpen_VideoEnd(false);
+    };
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -88,6 +92,19 @@ const Dashboard = props => {
         fetch();
     },[count]);
 
+
+    const callonEnd = () =>
+    {
+        console.log("This video has ended");
+        setOpen_VideoEnd(true);
+    };
+    const AddPointsToRecords = () =>
+    {
+        console.log("This video has ended");
+        setOpen_VideoEnd(false);
+    };
+
+
     return <div
         {...rest}
         className={clsx(classes.root, className)}
@@ -95,61 +112,85 @@ const Dashboard = props => {
 
             <Dialog
                 aria-labelledby="form-dialog-title"
-                onClose={handleClose}
-                open={open}
+                onClose={handleClose_videoEnd}
+                open={open_videoEnd}
             >
-                <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
+                <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Select the playlist  from the following:
+                       Add Video points to your profile:
                     </DialogContentText>
-                    <Grid>
-                        <Radio
-                            //checked={selectedValue === 'None'}
-                            inputProps={{ 'aria-label': 'None' }}
-                            name="radio-button-demo"
-                            //onChange={handleRadioChange}
-                            value="None"
-                        />
-                        <label>None</label>
-                        <span className={classes.spacer}/>
-                    </Grid>
-                    {/* {selectedValue == 'None'} */}
-
-                    <Grid>
-                        <Radio
-                            //checked={selectedValue === 'Random Sort'}
-                            inputProps={{ 'aria-label': 'Random Sort' }}
-                            name="radio-button-demo"
-                            //onChange={handleRadioChange}
-                            value="Random Sort"
-                        />
-                        <label>Random Sort</label>
-                        <span className={classes.spacer}/>
-                    </Grid>
-                    {/* {selectedValue == 'Random'} */}
-
-
-
-
-
 
                 </DialogContent>
                 <DialogActions>
                     <Button
                         color="primary"
-
+                        onClick={AddPointsToRecords}
                     >
-                        Save video
+                       Yes
+
                     </Button>
                     <Button
                         color="primary"
-                        onClick={handleClose}
+                        onClick={handleClose_videoEnd}
                     >
-                        Cancel
+                        No
                     </Button>
                 </DialogActions>
             </Dialog>
+
+
+        <Dialog
+            aria-labelledby="form-dialog-title"
+            onClose={handleClose}
+            open={open}
+        >
+            <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Select the playlist  from the following:
+                </DialogContentText>
+                <Grid>
+                    <Radio
+                        //checked={selectedValue === 'None'}
+                        inputProps={{ 'aria-label': 'None' }}
+                        name="radio-button-demo"
+                        //onChange={handleRadioChange}
+                        value="None"
+                    />
+                    <label>None</label>
+                    <span className={classes.spacer}/>
+                </Grid>
+                {/* {selectedValue == 'None'} */}
+
+                <Grid>
+                    <Radio
+                        //checked={selectedValue === 'Random Sort'}
+                        inputProps={{ 'aria-label': 'Random Sort' }}
+                        name="radio-button-demo"
+                        //onChange={handleRadioChange}
+                        value="Random Sort"
+                    />
+                    <label>Random Sort</label>
+                    <span className={classes.spacer}/>
+                </Grid>
+                {/* {selectedValue == 'Random'} */}
+
+            </DialogContent>
+            <DialogActions>
+                <Button
+                    color="primary"
+                >
+                    Save video
+                </Button>
+                <Button
+                    color="primary"
+                    onClick={handleClose}
+                >
+                    Cancel
+                </Button>
+            </DialogActions>
+        </Dialog>
 
 
         <Typography
@@ -166,6 +207,8 @@ const Dashboard = props => {
         </Typography>
 
         <ReactPlayer
+            controls={true}
+            onEnded={ callonEnd}
             url={Video_URL}
         />
         <Button
