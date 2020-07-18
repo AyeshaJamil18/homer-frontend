@@ -29,7 +29,7 @@ const Profile = props => {
                 setCountFriends(friends.length);
             }).catch(e => console.error(e));
         UserService.groups()
-            .then(groups => { 
+            .then(groups => {
                 setCountGroups(groups.member.length);
             }).catch(e => console.error(e));
     }, [])
