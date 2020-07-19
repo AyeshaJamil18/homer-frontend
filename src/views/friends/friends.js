@@ -26,15 +26,23 @@ const useStyles = makeStyles(theme => ({
 
 const Friends = props => {
     const classes = useStyles();
+    const [username, setUsername] = React.useState("");
     const [friends, setFriends] = React.useState([]);
     const [addFriendSuggestions, setAddFriendSuggestions] = React.useState([]);
 
-    useEffect(() => { loadFriends(); }, []);
+    useEffect(() => { loadFriends(); loadUsername(); }, []);
 
     function loadFriends() {
         UserService.friends()
             .then(friends => {
                 setFriends(friends);
+            }).catch(e => console.error(e));
+    }
+
+    function loadUsername() {
+        UserService.getCurrentUserData()
+            .then(user => {
+                setUsername(user.username);
             }).catch(e => console.error(e));
     }
 
@@ -46,7 +54,7 @@ const Friends = props => {
 
     function addFriendSearch(e) {
         if (e == "") { setAddFriendSuggestions([]); return; }
-        UserService.searchUser(e)
+        UserService.searchUser(e, {nofriendof: username})
             .then((s) => {
                 setAddFriendSuggestions(s);
             }).catch((e) => {
