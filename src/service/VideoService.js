@@ -15,7 +15,7 @@ const saveVideo = (VideoName, keywords, category, VideoURL, Duration, User) => {
         duration: Duration,
         uploader: User
     };
-
+    console.log(VideoObject);
     return HttpService.post(baseURL + '/SaveVideo', VideoObject)
         .then(resp => {
             if (resp.status === 200) {
