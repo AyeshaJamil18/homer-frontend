@@ -40,7 +40,7 @@ const Sidebar = props => {
 
     const pages = [
         {
-            title: 'Home Page',
+            title: 'Dashboard',
             href: '/dashboard',
             icon: <DashboardIcon/>
         },
@@ -53,14 +53,7 @@ const Sidebar = props => {
             title: 'Settings',
             href: '/SettingsView',
             icon: <SettingsIcon/>
-        },
-        {
-            title: 'Leaderboard',
-            href: '/LB',
-            icon: <LockOpenIcon/>
         }
-
-
     ];
 
     return (
