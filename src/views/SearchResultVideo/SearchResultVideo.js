@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { VideoService } from '../../service';
 import ReactPlayer from 'react-player';
 import { Typography  } from '@material-ui/core';
@@ -13,10 +12,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SearchResultVideo = props => {
+const SearchResultVideo = () => {
     const classes = useStyles();
     let location = useLocation();
-    let history = useHistory();
     const [showVideo, setshowVideo] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Card from '@material-ui/core/Card';
@@ -13,7 +13,6 @@ import Link from '@material-ui/core/Link';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import SearchField from "react-search-field";
 import TextField from '@material-ui/core/TextField';
 import { UserService } from '../../service';
 
@@ -45,7 +44,7 @@ const Friends = props => {
     }
 
     function addFriendSearch(e) {
-        if (e == "") { setAddFriendSuggestions([]); return; }
+        if (e === "") { setAddFriendSuggestions([]); return; }
         UserService.searchUser(e)
             .then((s) => {
                 setAddFriendSuggestions(s);

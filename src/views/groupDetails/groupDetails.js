@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -41,7 +41,7 @@ const Groups = props => {
     }
 
     function inviteSearch(search) {
-        if (search == "") { setInviteSuggestions([]); return; }
+        if (search === "") { setInviteSuggestions([]); return; }
         UserService.searchUser(search)
             .then((s) => {
                 setInviteSuggestions(s);

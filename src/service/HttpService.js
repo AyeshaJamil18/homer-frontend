@@ -1,5 +1,3 @@
-'use strict';
-
 const apiURL = () => {
     return process.env.REACT_APP_BACKEND_API_URL;
 };
@@ -14,7 +12,7 @@ const remove = (url) => generalizedFetch('DELETE', url);
 
 const generalizedFetch = (method, url, data) => {
     if ((method === 'GET' || method === 'DELETE') && data !== undefined) {
-        throw 'Get or delete can\'t have data';
+        throw new Error('Get or delete can\'t have data');
     }
 
     // BEARER TOKEN GOES HERE

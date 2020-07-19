@@ -20,9 +20,7 @@ import {
     AdminDashboard as AdminDashboardView,
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
-    LB as LB,
-
-    FriendRequest as FriendRequestView,
+    LB,
     SearchResultVideo as SearchResultVideoView
 
 } from './views';

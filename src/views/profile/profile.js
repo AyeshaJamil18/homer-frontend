@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,7 +16,6 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle,
-    Radio
 } from '@material-ui/core';
 import { UserService } from '../../service';
 import TextField from '@material-ui/core/TextField';
@@ -138,7 +137,7 @@ const Profile = props => {
                                 color="primary"
                                 variant="h1"
                             > {countFriends} </Typography>
-                            <Typography variant="h5"> { countFriends == 1 ? 'Friend' : 'Friends' } </Typography>
+                            <Typography variant="h5"> { countFriends === 1 ? 'Friend' : 'Friends' } </Typography>
                         </CardContent>
                         <CardActions>
                             <Button
@@ -161,7 +160,7 @@ const Profile = props => {
                                 color="primary"
                                 variant="h1"
                             > {countGroups} </Typography>
-                            <Typography variant="h5"> { countGroups == 1 ? 'Group' : 'Groups' } </Typography>
+                            <Typography variant="h5"> { countGroups === 1 ? 'Group' : 'Groups' } </Typography>
                         </CardContent>
                         <CardActions>
                             <Button
