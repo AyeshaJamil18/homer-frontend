@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
-import { Button, Checkbox, FormHelperText, Grid, IconButton, Link, TextField, Typography } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Button, FormHelperText, Grid, TextField, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -207,7 +206,7 @@ const SignUp = props => {
 
             }).catch(response => {
                 
-                if (response.status==1212) {
+                if (response.status===1212) {
                     ErrorMessage = 'Did not find Server';
                     handleClickOpen();
                 }

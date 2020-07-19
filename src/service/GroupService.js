@@ -1,5 +1,4 @@
 import HttpService from './HttpService';
-import AuthService from './AuthService';
 
 const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/group';
 

@@ -1,5 +1,3 @@
-'use strict';
-
 import HttpService from './HttpService';
 import AuthService from './AuthService';
 import AdminAuthService from './AdminAuthService';
