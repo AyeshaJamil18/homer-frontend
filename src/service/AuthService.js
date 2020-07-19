@@ -37,7 +37,6 @@ const login = (email, password) => {
                 return resp.json()
                     .then(json => {
                         handleBearerToken(json);
-
                         return Promise.resolve(resp);
                     });
             } else {
@@ -71,7 +70,7 @@ const handleBearerToken = (resp) => {
     if (resp.hasOwnProperty('token')) {
         window.localStorage['bearerToken'] = resp.token;
     } else {
-        throw 'Bearer token was not in response';
+        throw new Error('Bearer token was not in response');
     }
 };
 

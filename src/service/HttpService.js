@@ -1,10 +1,8 @@
-'use strict';
-
 const apiURL = () => {
     return process.env.REACT_APP_BACKEND_API_URL;
 };
 
-const get = (url) => generalizedFetch('GET', url);
+const get = (url, params) => generalizedFetch('GET', url, undefined, params);
 
 const put = (url, data) => generalizedFetch('PUT', url, data);
 
@@ -12,10 +10,11 @@ const post = (url, data) => generalizedFetch('POST', url, data);
 
 const remove = (url) => generalizedFetch('DELETE', url);
 
-const generalizedFetch = (method, url, data) => {
+const generalizedFetch = (method, url, data, params) => {
     if ((method === 'GET' || method === 'DELETE') && data !== undefined) {
-        throw 'Get or delete can\'t have data';
+        throw new Error('Get or delete can\'t have data');
     }
+    var url_obj = new URL(url);
 
     // BEARER TOKEN GOES HERE
     let token = window.localStorage['bearerToken']; // = '*TOKEN*';
@@ -28,7 +27,11 @@ const generalizedFetch = (method, url, data) => {
         header.append('Content-Type', 'application/json');
     }
 
-    return fetch(url, {
+    if (params) {
+        Object.keys(params).forEach(key => url_obj.searchParams.append(key, params[key]))
+    }
+
+    return fetch(url_obj, {
         method: method,
         headers: header,
         body: data ? JSON.stringify(data) : undefined

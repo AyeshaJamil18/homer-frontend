@@ -2,22 +2,25 @@ import React from 'react';
 import { Redirect, Switch } from 'react-router-dom';
 
 import { RouteWithLayout } from './components';
-import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+import { Main as MainLayout, Minimal as MinimalLayout, AdminMain as AdminMainLayout } from './layouts';
 
 import {
     Profile as ProfileView,
     Friends as FriendsView,
+    Groups as GroupsView,
+    GroupDetails as GroupDetailsView,
     Dashboard as DashboardView,
     Icons as IconsView,
     NotFound as NotFoundView,
     Settings as SettingsView,
     SignIn as SignInView,
+    AdminSignIn as AdminSignInView,
     SignUp as SignUpView,
+    AdminSignUp as AdminSignUpView,
+    AdminDashboard as AdminDashboardView,
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
-    LB as LB,
-
-
+    SearchResultVideo as SearchResultVideoView
 } from './views';
 
 const Routes = () => {
@@ -35,6 +38,12 @@ const Routes = () => {
                 path="/dashboard"
             />
             <RouteWithLayout
+                component={AdminDashboardView}
+                exact
+                layout={AdminMainLayout}
+                path="/Admin-Dashboard"
+            />
+            <RouteWithLayout
 
                 component={ProfileView}
                 exact
@@ -46,6 +55,24 @@ const Routes = () => {
                 exact
                 layout={MainLayout}
                 path="/friends"
+            />
+            <RouteWithLayout
+                component={SearchResultVideoView}
+                exact
+                layout={MainLayout}
+                path="/SearchResultVideo"
+            />
+            <RouteWithLayout
+                component={GroupsView}
+                exact
+                layout={MainLayout}
+                path="/groups"
+            />
+            <RouteWithLayout
+                component={GroupDetailsView}
+                exact
+                layout={MainLayout}
+                path="/groups/:title"
             />
             <RouteWithLayout
 
@@ -61,12 +88,6 @@ const Routes = () => {
                 path="/SharePlaylist"
             />
             <RouteWithLayout
-                component={LB}
-                exact
-                layout={MainLayout}
-                path="/LB"
-            />
-            <RouteWithLayout
                 component={TypographyView}
                 exact
                 layout={MainLayout}
@@ -78,7 +99,6 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/icons"
             />
-
             <RouteWithLayout
                 component={SettingsView}
                 exact
@@ -92,10 +112,22 @@ const Routes = () => {
                 path="/sign-up"
             />
             <RouteWithLayout
+                component={AdminSignUpView}
+                exact
+                layout={MinimalLayout}
+                path="/admin-sign-up"
+            />
+            <RouteWithLayout
                 component={SignInView}
                 exact
                 layout={MinimalLayout}
                 path="/sign-in"
+            />
+            <RouteWithLayout
+                component={AdminSignInView}
+                exact
+                layout={MinimalLayout}
+                path="/admin-sign-in"
             />
             <RouteWithLayout
                 component={NotFoundView}

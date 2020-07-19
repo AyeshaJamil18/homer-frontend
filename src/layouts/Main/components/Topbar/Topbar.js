@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React from 'react';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles  } from '@material-ui/styles';
@@ -26,13 +26,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Topbar = props => {
-    const { className, onSidebarOpen, ...rest } = props;
+    const { history,className, onSidebarOpen, ...rest } = props;
 
     const classes = useStyles();
 
-    const [notifications] = useState([]);
+    const onSearchClick = (e) => {
 
-    let onSearchClick;
+        history.push({
+            pathname: '/SearchResultVideo',
+            state: {
+                TagName: e
+            }
+
+        });
+    };
     return (
         <AppBar
             {...rest}
@@ -48,7 +55,8 @@ const Topbar = props => {
                 <div className={classes.flexGrow}/>
                 <SearchField
                     placeholder='Search item'
-                    onSearchClick={onSearchClick}
+                    onSearchClick={(e) => onSearchClick(e)}
+
                 />
                 <Hidden lgUp>
                     <IconButton
@@ -68,4 +76,8 @@ Topbar.propTypes = {
     onSidebarOpen: PropTypes.func
 };
 
-export default Topbar;
+
+Topbar.propTypes = {
+    history: PropTypes.object
+};
+export default withRouter(Topbar);
