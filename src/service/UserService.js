@@ -72,9 +72,7 @@ const addFriend = (username) => {
 };
 
 const removeFriend = (username) => {
-    const body = { username: username };
-
-    return HttpService.post(baseURL + '/removeFriend', body)
+    return HttpService.remove(baseURL + '/removeFriend/' + username)
         .catch(e => console.error(e));
 };
 
@@ -92,7 +90,7 @@ const friends = () => {
 
 
 const addXP = (xp) =>
-    HttpService.post(baseURL + '/addXp/' + xp);
+    HttpService.put(baseURL + '/addXp/' + xp);
 
 const CreatePlaylist = (PlaylistName) =>
     HttpService.post(baseURL + '/CreatePlaylist/' + PlaylistName);

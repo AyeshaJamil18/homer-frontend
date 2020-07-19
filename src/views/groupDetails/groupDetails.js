@@ -12,8 +12,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { UserService } from '../../service';
-import { GroupService } from '../../service';
+import { UserService, GroupService, LeaderboardService } from '../../service';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,8 +27,9 @@ const Groups = props => {
     const [members, setMembers] = React.useState([]);
     const [invited, setInvited] = React.useState([]);
     const [inviteSuggestions, setInviteSuggestions] = React.useState([]);
+    const [leaderboard, setLeaderboard] = React.useState([]);
 
-    useEffect(() => { loadMembers(); }, []);
+    useEffect(() => { loadMembers(); loadLeaderboard(); }, []);
 
     function loadMembers() {
         GroupService.get(props.match.params.title)
@@ -40,10 +40,17 @@ const Groups = props => {
             }).catch(e => console.error(e));
     }
 
+    function loadLeaderboard() {
+        LeaderboardService.generateRanking(props.match.params.title)
+            .then(leaderboard => {
+                setLeaderboard(leaderboard);
+            })
+            .catch((e) => { console.error(e); });
+    }
+
     function inviteSearch(search) {
         if (search === "") { setInviteSuggestions([]); return; }
         UserService.searchUser(search, {nomemberof: title})
-
             .then((s) => {
                 setInviteSuggestions(s);
             }).catch((e) => {
@@ -67,54 +74,77 @@ const Groups = props => {
                     <Typography color="text-primary"> {title} </Typography>
                 </Breadcrumbs>
             </Grid>
-            <Grid item md={7} xs={12}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h3"> Invited </Typography>
-                        <Autocomplete
-                            freeSolo 
-                            options={inviteSuggestions}
-                            getOptionLabel={user => (user.firstName + ' ' + user.lastName)}
-                            onChange={(event, value) => { invite(value); }}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    onChange={(e) => inviteSearch(e.target.value)}
-                                    label="Invite"
-                                    placeholder="search"
-                                    InputProps={{ ...params.InputProps, type: 'search' }}
+            <Grid item container spacing={3}>
+                <Grid item container xs={7} spacing={3} direction="column"> {/* First Column */}
+                    <Grid item>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h3"> Invited </Typography>
+                                <Autocomplete
+                                    freeSolo 
+                                    options={inviteSuggestions}
+                                    getOptionLabel={user => (user.firstName + ' ' + user.lastName)}
+                                    onChange={(event, value) => { invite(value); }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            onChange={(e) => inviteSearch(e.target.value)}
+                                            label="Invite"
+                                            placeholder="search"
+                                            InputProps={{ ...params.InputProps, type: 'search' }}
+                                        />
+                                    )}
                                 />
-                            )}
-                        />
-                        <List> { invited.map((user) => (
-                            <ListItem>
-                                <ListItemAvatar>
-                                    { /* TODO Group pictues */ }
-                                </ListItemAvatar>
-                                <ListItemText 
-                                    primary={ user.firstName + ' ' + user.lastName }
-                                    secondary={user.username} />
-                            </ListItem> ))}
-                        </List>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item md={7} xs={12}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h3"> Members </Typography>
-                        <List> { members.map((user) => (
-                            <ListItem>
-                                <ListItemAvatar>
-                                    { /* TODO Group pictues */ }
-                                </ListItemAvatar>
-                                <ListItemText 
-                                    primary={ user.firstName + ' ' + user.lastName }
-                                    secondary={user.username} />
-                            </ListItem> ))}
-                        </List>
-                    </CardContent>
-                </Card>
+                                <List> { invited.map((user) => (
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            { /* TODO Group pictues */ }
+                                        </ListItemAvatar>
+                                        <ListItemText 
+                                            primary={ user.firstName + ' ' + user.lastName }
+                                            secondary={user.username} />
+                                    </ListItem> ))}
+                                </List>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h3"> Members </Typography>
+                                <List> { members.map((user) => (
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            { /* TODO Group pictues */ }
+                                        </ListItemAvatar>
+                                        <ListItemText 
+                                            primary={ user.firstName + ' ' + user.lastName }
+                                            secondary={user.username} />
+                                    </ListItem> ))}
+                                </List>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <Grid item container xs={5} sm={3}> {/* Second Column */}
+                    <Grid item xs>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h5"> Leaderboard </Typography>
+                                <List> { leaderboard.map((user) => (
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            { /* TODO Profile pictues */ }
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary={ user.username }
+                                            secondary={user.points} />
+                                    </ListItem> ))}
+                                </List>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     );
