@@ -72,9 +72,7 @@ const addFriend = (username) => {
 };
 
 const removeFriend = (username) => {
-    const body = { username: username };
-
-    return HttpService.remove(baseURL + '/removeFriend', body)
+    return HttpService.remove(baseURL + '/removeFriend/' + username)
         .catch(e => console.error(e));
 };
 
