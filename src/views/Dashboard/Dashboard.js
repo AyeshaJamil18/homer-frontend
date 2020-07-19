@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Dashboard = props => {
-
     const classes = useStyles();
     const { className, ...rest } = props;
     const [videoName, setVideoName] = React.useState('');
@@ -88,10 +87,39 @@ const Dashboard = props => {
     };
 
     return (
-        <Grid container spacing={3} className={classes.root}>
-            <Breadcrumbs aria-label="breadcrumb">
-                <Typography color="text-primary"> Dashboard </Typography>
-            </Breadcrumbs>
+        <Grid container xs={9} spacing={3} className={classes.root}>
+            <Grid item xs={12}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Typography color="text-primary"> Dashboard </Typography>
+                </Breadcrumbs>
+            </Grid>
+            <Grid item container spacing={3}>
+                <Grid item container xs={9}> {/* First Column */}
+                    <Grid item>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h2"> Video Of The Day </Typography>
+                                <Typography variant="h4"> {videoName} </Typography>
+
+                                <ReactPlayer controls onEnded={callonEnd} url={videoURL} />
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick={() => handleClickOpen()} > Add to playlist </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <Grid item container xs={3}> {/* Second Column */}
+                    <Grid item xs>
+                        <Card>
+                            <CardContent>
+                                <Typography> Leaderboards </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Grid>
+
             <Dialog
                 aria-labelledby="form-dialog-title"
                 onClose={() => { setVideoEndDialogOpen(false); }}
@@ -135,20 +163,6 @@ const Dashboard = props => {
                     <Button color="primary" onClick={() => { setAddToPlaylistDialogOpen(false); }}> Cancel </Button>
                 </DialogActions>
             </Dialog>
-
-            <Grid item md={7} xs={12}>
-                <Card>
-                    <CardContent>
-                        <Typography className={classes.name} variant="h2"> Video Of The Day </Typography>
-                        <Typography className={classes.name} variant="h4"> {videoName} </Typography>
-
-                        <ReactPlayer controls onEnded={callonEnd} url={videoURL} />
-                    </CardContent>
-                    <CardActions>
-                        <Button onClick={() => handleClickOpen()} > Add to playlist </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
         </Grid>
     )};
 
