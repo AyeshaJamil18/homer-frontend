@@ -1,71 +1,51 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import clsx from 'clsx';
 import {
+    Breadcrumbs,
     Button,
+    Card,
+    CardContent,
+    CardActions,
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Grid,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText,
     Typography,
-
 } from '@material-ui/core';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 
-import { VideoService , UserService, PlaylistService} from '../../service';
+import { VideoService , UserService, PlaylistService, LeaderboardService} from '../../service';
 import ReactPlayer from 'react-player'
-
-
-let Video_Name='';
-let Video_URL='';
-let Video_ID='';
-let Video_Duration='';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: theme.spacing(4)
+        padding: theme.spacing(4),
+        flexGrow: 1,
     }
 }));
 
 const Dashboard = props => {
-
     const classes = useStyles();
     const { className, ...rest } = props;
-
-    const [count, setCount] = React.useState(0);
-
-    const [VideoName, setVideoName] = React.useState('');
-
-    const [VideoURL, setVideoURL] = React.useState('');
-    const [VideoID, setVideoID] = React.useState('');
-    const [open, setOpen] = React.useState(false);
-    const [open_videoEnd, setOpen_VideoEnd] = React.useState(false);
+    const [videoName, setVideoName] = React.useState('');
+    const [videoURL, setVideoURL] = React.useState('');
+    const [videoID, setVideoID] = React.useState('');
+    const [videoXP, setVideoXP] = React.useState('');
+    const [globalLeaderboard, setGlobalLeaderboard] = React.useState([]);
+    const [addToPlaylistDialogOpen, setAddToPlaylistDialogOpen] = React.useState(false);
+    const [videoEndDialogOpen, setVideoEndDialogOpen] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
 
+    useEffect(() => { VideoOfTheDay(); getLeaderboard(); }, []);
 
-    const handlesetVideoName = () => {
-        setVideoName(Video_Name);
-    };
-    const handlesetVideoURL= () => {
-        setVideoURL(Video_URL);
-    };
-    const handlesetVideoID= () => {
-        setVideoID(Video_ID);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const handleClose_videoEnd = () => {
-        setOpen_VideoEnd(false);
-    };
-
-    const GetUSerPlaylist = () =>{
+    function GetUserPlaylist() {
         PlaylistService.GetPlaylist()
             .then(data => {
                 console.log(data);
@@ -73,107 +53,119 @@ const Dashboard = props => {
                 setDocumentList(data.docs);
                 console.log(documentList);
             })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
+            .catch((e) => { console.error(e); });
+    }
 
-    const handleClickOpen = () => {
-        console.log('in handle click open');
-        GetUSerPlaylist();
-        console.log('after func');
-        setOpen(true);
-    };
-    const AddToSpecificPlaylist =(Playlist_name) =>
-    {
+    function getLeaderboard() {
+        LeaderboardService.generateRanking('global')
+            .then(leaderboard => {
+                setGlobalLeaderboard(leaderboard);
+            })
+            .catch((e) => { console.error(e); });
+    }
 
-        PlaylistService.AddVideo(Playlist_name,VideoID);
-        setOpen(false);
+    function handleClickOpen() {
+        GetUserPlaylist();
+        setAddToPlaylistDialogOpen(true);
+    }
+    const AddToSpecificPlaylist =(Playlist_name) => {
+        PlaylistService.AddVideo(Playlist_name, videoID);
+        setAddToPlaylistDialogOpen(false);
     };
 
     const VideoOfTheDay = () => {
-        VideoService.GetvideoOfTheDay()
-            .then(data => {
-                console.log(data);
-                console.log(JSON.stringify(data[0]['videoTitle']));
-                Video_Name          =data[0]['videoTitle'];
-                Video_URL           =data[0]['videoUrl'];
-                Video_ID           = data[0]['_id'];
-                Video_Duration      = data[0]['duration'];
-                console.log(Video_ID)
-                handlesetVideoName(Video_Name);
-                handlesetVideoURL(Video_URL);
-                handlesetVideoID(Video_ID);
+        VideoService.videoOfTheDay()
+            .then(video => {
+                setVideoName(video.videoTitle);
+                setVideoURL(video.videoUrl);
+                setVideoID(video.id);
+                setVideoXP(video.duration);
             })
             .catch((e) => {
                 console.log(e);
             });
-
     };
-    useEffect( () => {
-        const fetch = async () => {
-            await VideoOfTheDay()
-        }
-        fetch();
-    },[count]);
-
-
-    const callonEnd = () =>
-    {
+    
+    const callonEnd = () => {
         console.log('This video has ended');
-        setOpen_VideoEnd(true);
+        setVideoEndDialogOpen(true);
     };
-    const AddPointsToRecords = () =>
-    {
+    const AddPointsToRecords = () => {
         console.log('This video has ended');
-        setOpen_VideoEnd(false);
-        UserService.addXP(Video_Duration)
+        setVideoEndDialogOpen(false);
+        UserService.addXP(videoXP)
     };
 
+    return (
+        <Grid container xs={9} spacing={3} className={classes.root}>
+            <Grid item xs={12}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Typography color="text-primary"> Dashboard </Typography>
+                </Breadcrumbs>
+            </Grid>
+            <Grid item container spacing={3}>
+                <Grid item container xs={9}> {/* First Column */}
+                    <Grid item>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h2"> Video Of The Day </Typography>
+                                <Typography variant="h4"> {videoName} </Typography>
 
-    return <div
-        {...rest}
-        className={clsx(classes.root, className)}
-           >
+                                <ReactPlayer controls onEnded={callonEnd} url={videoURL} />
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick={() => handleClickOpen()} > Add to playlist </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <Grid item container xs={3}> {/* Second Column */}
+                    <Grid item xs>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h5"> Global Leaderboard </Typography>
+                                <List> { globalLeaderboard.map((user) => (
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            { /* TODO Profile pictues */ }
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary={ user.username }
+                                            secondary={user.points} />
+                                    </ListItem> ))}
+                                </List>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Grid>
 
-        <Dialog
-            aria-labelledby="form-dialog-title"
-            onClose={handleClose_videoEnd}
-            open={open_videoEnd}
-        >
-            <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                       Add Video points {Video_Duration} to your profile:
-                </DialogContentText>
-
-            </DialogContent>
-            <DialogActions>
-                <Button
-                    color="primary"
-                    onClick={AddPointsToRecords}
-                >
-                       Yes
-                </Button>
-                <Button
-                    color="primary"
-                    onClick={handleClose_videoEnd}
-                >
-                        No
-                </Button>
-            </DialogActions>
-        </Dialog>
-        <Dialog
-            aria-labelledby="form-dialog-title"
-            onClose={handleClose}
-            open={open}
-        >
-            <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                    Select the playlist  from the following:
-                </DialogContentText>
-                <Grid>
+            <Dialog
+                aria-labelledby="form-dialog-title"
+                onClose={() => { setVideoEndDialogOpen(false); }}
+                open={videoEndDialogOpen}
+            >
+                <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Add Video points {videoXP} to your profile:
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={AddPointsToRecords}> Yes </Button>
+                    <Button color="primary" onClick={() => { setVideoEndDialogOpen(false); }}> No </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                aria-labelledby="form-dialog-title"
+                onClose={() => { setAddToPlaylistDialogOpen(false); }}
+                open={addToPlaylistDialogOpen}
+            >
+                <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Select the playlist from the following:
+                    </DialogContentText>
                     <List>
                         { documentList.map((document)  => (
                             <ListItem>
@@ -184,53 +176,15 @@ const Dashboard = props => {
                                     <Button onClick={() => AddToSpecificPlaylist(document._id) } > Add </Button>
                                 </ListItemSecondaryAction>
                             </ListItem>
-                        ))
-                        }
+                        ))}
                     </List>
-                </Grid>
-
-                {/* {selectedValue == 'None'} */}
-
-
-            </DialogContent>
-            <DialogActions>
-                <Button
-                    color="primary"
-                    onClick={handleClose}
-                >
-                    Cancel
-                </Button>
-            </DialogActions>
-        </Dialog>
-
-
-        <Typography
-            className={classes.name}
-            variant="h2"
-        >
-            Video Of The Day
-        </Typography>
-        <Typography
-            className={classes.name}
-            variant="h4"
-        >
-            {Video_Name}
-        </Typography>
-
-        <ReactPlayer
-            controls
-            onEnded={callonEnd}
-            url={Video_URL}
-        />
-        <Button
-            onClick={() => handleClickOpen()}
-        >
-            Add to playlist
-        </Button>
-
-    </div>
-
-};
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={() => { setAddToPlaylistDialogOpen(false); }}> Cancel </Button>
+                </DialogActions>
+            </Dialog>
+        </Grid>
+    )};
 
 Dashboard.propTypes = {
     className: PropTypes.string

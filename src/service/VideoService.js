@@ -29,10 +29,11 @@ const saveVideo = (VideoName, keywords, category, VideoURL, Duration, User) => {
         });
 };
 
-const GetvideoOfTheDay = () => {
+const videoOfTheDay = () => {
 
-    return HttpService.get(baseURL + '/GetVideoOfDay')
-        .then(resp => {
+    return HttpService.get(baseURL + '/videoOfDay')
+        .then(resp => { return resp.json(); }
+            /*
             if (resp.status === 200) {
                 console.log(resp);
                 return resp.json()
@@ -41,14 +42,15 @@ const GetvideoOfTheDay = () => {
                     });
             } else {
                 return Promise.reject(resp);
-            }
-        });
+            }*/
+        )
+        .catch(e => console.error(e));
 };
 
 
 const GetVideoByTag = ( tag) => {
 
-    return HttpService.get(baseURL + '/GetVideo/'+ tag)
+    return HttpService.get(baseURL + '/video/'+ tag)
         .then(resp => {
             if (resp.status === 200) {
                 return resp.json()
@@ -63,6 +65,6 @@ const GetVideoByTag = ( tag) => {
 
 export default {
     saveVideo,
-    GetvideoOfTheDay,
+    videoOfTheDay,
     GetVideoByTag
 };

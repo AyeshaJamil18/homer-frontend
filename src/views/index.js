@@ -13,6 +13,5 @@ export { default as Friends } from './friends';
 export { default as Groups } from './groups';
 export { default as GroupDetails} from './groupDetails';
 export { default as SharePlaylist } from './SharePlaylist';
-export { default as LB } from './LB';
 export { default as FriendRequest } from './FriendRequest';
 export { default as SearchResultVideo } from './SearchResultVideo';

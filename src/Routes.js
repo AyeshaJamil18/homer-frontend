@@ -20,9 +20,7 @@ import {
     AdminDashboard as AdminDashboardView,
     Typography as TypographyView,
     SharePlaylist as SharePlaylistView,
-    LB,
     SearchResultVideo as SearchResultVideoView
-
 } from './views';
 
 const Routes = () => {
@@ -45,7 +43,6 @@ const Routes = () => {
                 layout={AdminMainLayout}
                 path="/Admin-Dashboard"
             />
-
             <RouteWithLayout
 
                 component={ProfileView}
@@ -53,28 +50,18 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/profile"
             />
-
             <RouteWithLayout
                 component={FriendsView}
-
-
                 exact
                 layout={MainLayout}
                 path="/friends"
             />
-
             <RouteWithLayout
-
-
                 component={SearchResultVideoView}
                 exact
                 layout={MainLayout}
                 path="/SearchResultVideo"
             />
-
-
-
-
             <RouteWithLayout
                 component={GroupsView}
                 exact
@@ -101,12 +88,6 @@ const Routes = () => {
                 path="/SharePlaylist"
             />
             <RouteWithLayout
-                component={LB}
-                exact
-                layout={MainLayout}
-                path="/LB"
-            />
-            <RouteWithLayout
                 component={TypographyView}
                 exact
                 layout={MainLayout}
@@ -118,7 +99,6 @@ const Routes = () => {
                 layout={MainLayout}
                 path="/icons"
             />
-
             <RouteWithLayout
                 component={SettingsView}
                 exact
