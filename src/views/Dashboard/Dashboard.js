@@ -19,11 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { VideoService , UserService, PlaylistService} from '../../service';
 import ReactPlayer from 'react-player'
 
-let Video_Name='';
-let Video_URL='';
-let Video_ID='';
-let Video_Duration='';
-
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(4)
@@ -34,26 +29,15 @@ const Dashboard = props => {
 
     const classes = useStyles();
     const { className, ...rest } = props;
-    //const [count, setCount] = React.useState(0);
-    const [VideoName, setVideoName] = React.useState('');
-    const [VideoURL, setVideoURL] = React.useState('');
-    const [VideoID, setVideoID] = React.useState('');
+    const [videoName, setVideoName] = React.useState('');
+    const [videoURL, setVideoURL] = React.useState('');
+    const [videoID, setVideoID] = React.useState('');
+    const [videoXP, setVideoXP] = React.useState('');
     const [addToPlaylistDialogOpen, setAddToPlaylistDialogOpen] = React.useState(false);
     const [videoEndDialogOpen, setVideoEndDialogOpen] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
 
-    useEffect(() => {  VideoOfTheDay(); }, []);
-
-    //const handlesetVideoName = () => { setVideoName(Video_Name); };
-    //const handlesetVideoURL= () => { setVideoURL(Video_URL); };
-    //const handlesetVideoID= () => { setVideoID(Video_ID); };
-
-    //const handleClose = () => {
-    //    setOpen(false);
-    //};
-    //const handleClose_videoEnd = () => {
-    //    setOpen_VideoEnd(false);
-    //};
+    useEffect(() => { VideoOfTheDay(); }, []);
 
     const GetUserPlaylist = () => {
         PlaylistService.GetPlaylist()
@@ -63,9 +47,7 @@ const Dashboard = props => {
                 setDocumentList(data.docs);
                 console.log(documentList);
             })
-            .catch((e) => {
-                console.log(e);
-            });
+            .catch((e) => { console.error(e); });
     };
 
     const handleClickOpen = () => {
@@ -73,23 +55,17 @@ const Dashboard = props => {
         setAddToPlaylistDialogOpen(true);
     };
     const AddToSpecificPlaylist =(Playlist_name) => {
-        PlaylistService.AddVideo(Playlist_name,VideoID);
+        PlaylistService.AddVideo(Playlist_name, videoID);
         setAddToPlaylistDialogOpen(false);
     };
 
     const VideoOfTheDay = () => {
         VideoService.videoOfTheDay()
             .then(video => {
-                //console.log(JSON.stringify(data[0]['videoTitle']));
-                //Video_Name          =data[0]['videoTitle'];
-                //Video_URL           =data[0]['videoUrl'];
-                //Video_ID           = data[0]['_id'];
-                //Video_Duration      = data[0]['duration'];
-                //console.log(Video_ID)
                 setVideoName(video.videoTitle);
                 setVideoURL(video.videoUrl);
                 setVideoID(video.id);
-                //console.log(video);
+                setVideoXP(video.duration);
             })
             .catch((e) => {
                 console.log(e);
@@ -103,7 +79,7 @@ const Dashboard = props => {
     const AddPointsToRecords = () => {
         console.log('This video has ended');
         setVideoEndDialogOpen(false);
-        UserService.addXP(Video_Duration)
+        UserService.addXP(videoXP)
     };
 
     return <div {...rest} className={clsx(classes.root, className)}>
@@ -116,7 +92,7 @@ const Dashboard = props => {
             <DialogTitle id="form-dialog-title">Video Points</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                       Add Video points {Video_Duration} to your profile:
+                       Add Video points {videoXP} to your profile:
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -154,9 +130,9 @@ const Dashboard = props => {
 
 
         <Typography className={classes.name} variant="h2"> Video Of The Day </Typography>
-        <Typography className={classes.name} variant="h4"> {VideoName} </Typography>
+        <Typography className={classes.name} variant="h4"> {videoName} </Typography>
 
-        <ReactPlayer controls onEnded={callonEnd} url={VideoURL} />
+        <ReactPlayer controls onEnded={callonEnd} url={videoURL} />
         <Button onClick={() => handleClickOpen()} > Add to playlist </Button>
     </div>
 };
