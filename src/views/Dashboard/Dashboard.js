@@ -13,14 +13,15 @@ import {
     DialogContentText,
     DialogTitle,
     Grid,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText,
     Typography,
 } from '@material-ui/core';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 
-import { VideoService , UserService, PlaylistService} from '../../service';
+import { VideoService , UserService, PlaylistService, LeaderboardService} from '../../service';
 import ReactPlayer from 'react-player'
 
 const useStyles = makeStyles(theme => ({
@@ -37,13 +38,14 @@ const Dashboard = props => {
     const [videoURL, setVideoURL] = React.useState('');
     const [videoID, setVideoID] = React.useState('');
     const [videoXP, setVideoXP] = React.useState('');
+    const [globalLeaderboard, setGlobalLeaderboard] = React.useState([]);
     const [addToPlaylistDialogOpen, setAddToPlaylistDialogOpen] = React.useState(false);
     const [videoEndDialogOpen, setVideoEndDialogOpen] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
 
-    useEffect(() => { VideoOfTheDay(); }, []);
+    useEffect(() => { VideoOfTheDay(); getLeaderboard(); }, []);
 
-    const GetUserPlaylist = () => {
+    function GetUserPlaylist() {
         PlaylistService.GetPlaylist()
             .then(data => {
                 console.log(data);
@@ -52,12 +54,20 @@ const Dashboard = props => {
                 console.log(documentList);
             })
             .catch((e) => { console.error(e); });
-    };
+    }
 
-    const handleClickOpen = () => {
+    function getLeaderboard() {
+        LeaderboardService.generateRanking('global')
+            .then(leaderboard => {
+                setGlobalLeaderboard(leaderboard);
+            })
+            .catch((e) => { console.error(e); });
+    }
+
+    function handleClickOpen() {
         GetUserPlaylist();
         setAddToPlaylistDialogOpen(true);
-    };
+    }
     const AddToSpecificPlaylist =(Playlist_name) => {
         PlaylistService.AddVideo(Playlist_name, videoID);
         setAddToPlaylistDialogOpen(false);
@@ -113,7 +123,17 @@ const Dashboard = props => {
                     <Grid item xs>
                         <Card>
                             <CardContent>
-                                <Typography> Leaderboards </Typography>
+                                <Typography variant="h5"> Global Leaderboard </Typography>
+                                <List> { globalLeaderboard.map((user) => (
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            { /* TODO Profile pictues */ }
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary={ user.username }
+                                            secondary={user.points} />
+                                    </ListItem> ))}
+                                </List>
                             </CardContent>
                         </Card>
                     </Grid>
