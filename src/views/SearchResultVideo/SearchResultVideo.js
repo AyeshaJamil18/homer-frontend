@@ -25,8 +25,10 @@ const SearchResultVideo = props => {
     const onSearchClick = () => {
         VideoService.GetVideoByTag(location.state.TagName)
             .then(data => {
+                console.log(data.docs);
                 setDocumentList(data.docs);
                 setshowVideo(true);
+                console.log(documentList)
             })
             .catch((e) => {
                 console.log(e);

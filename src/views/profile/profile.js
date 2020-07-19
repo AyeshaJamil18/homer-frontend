@@ -18,8 +18,12 @@ import {
     DialogTitle,
     Radio
 } from '@material-ui/core';
-import { UserService } from '../../service';
+import { PlaylistService, UserService } from '../../service';
 import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,6 +39,22 @@ const Profile = props => {
     const [countGroups, setCountGroups] = React.useState(0);
     const [open, setOpen] = React.useState(false);
     const [selectedPlaylistName, setSelectedPlaylistName] = React.useState('');
+    const [open_ViewAllPlaylists, setOpen_ViewAllPlaylists] = React.useState(false);
+    const [documentList, setDocumentList] = React.useState([]);
+
+    const GetUSerPlaylist = () =>{
+        PlaylistService.GetPlaylist()
+            .then(data => {
+                console.log(data);
+                console.log(data.docs);
+                setDocumentList(data.docs);
+                console.log(documentList);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
 
     const handleClose = () => {
         setOpen(false);
@@ -42,6 +62,26 @@ const Profile = props => {
     const handleClickOpen = () => {
         setOpen(true);
     };
+
+
+
+    const handleClickOpen_ViewAllPlaylists = () => {
+        console.log('in handle click open')
+        GetUSerPlaylist();
+        console.log('after func');
+        setOpen_ViewAllPlaylists(true);
+    };
+
+
+    const handleClose_ViewAllPlaylists = () => {
+        setOpen_ViewAllPlaylists(false);
+    };
+
+
+
+
+
+
 
     const SavePlaylist = () => {
         console.log(selectedPlaylistName);
@@ -68,6 +108,50 @@ const Profile = props => {
 
     return (
         <div>
+
+            <Dialog
+                autoDetectWindowHeight={false}
+                autoDetectWindowWidth={false}
+                aria-labelledby="form-dialog-title"
+                onClose={handleClose_ViewAllPlaylists}
+                open={open_ViewAllPlaylists}
+            >
+                <DialogTitle id="form-dialog-title">Your Playlist</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                      Select the playlists you want to share:
+                    </DialogContentText>
+                    <Grid>
+                        <List>
+                            { documentList.map((document)  => (
+                                <ListItem>
+                                    <ListItemText
+                                        primary = {document.title}
+                                    />
+                                    <ListItemSecondaryAction>
+                                        <Button  > Share </Button>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            ))
+                            }
+                        </List>
+                    </Grid>
+
+                    {/* {selectedValue == 'None'} */}
+
+
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        color="primary"
+                        onClick={handleClose_ViewAllPlaylists}
+                    >
+                        Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+
             <Dialog
                 aria-labelledby="form-dialog-title"
                 onClose={handleClose}
@@ -88,12 +172,9 @@ const Profile = props => {
                             //value={selectedValueMaskRange}
                             onChange={handlePlaylistName}
                             value={selectedPlaylistName}
-
                         />
                         <span className={classes.spacer}/>
                     </Grid>
-
-
                 </DialogContent>
                 <DialogActions>
                     <Button
@@ -127,10 +208,8 @@ const Profile = props => {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
                     md={3}
-                    sm={4}
-                    xs={5}
+                    xs={2}
                 >
                     <Card>
                         <CardContent style={{textAlign: 'center'}}>
@@ -150,10 +229,8 @@ const Profile = props => {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
                     md={3}
-                    sm={4}
-                    xs={5}
+                    xs={2}
                 >
                     <Card>
                         <CardContent style={{textAlign: 'center'}}>
@@ -171,6 +248,8 @@ const Profile = props => {
                         </CardActions>
                     </Card>
                 </Grid>
+
+
                 <Grid
                     item
                     md={7}
@@ -188,7 +267,15 @@ const Profile = props => {
                             </Typography>
                             <CardActions>
                                 <Grid allign = "row" >
-                                    <Button size="small">Share Playlist</Button>
+                                    <Button    onClick={() => handleClickOpen_ViewAllPlaylists()}
+                                               size="small">Share Playlist</Button>
+
+
+
+
+
+
+
                                     <Button
                                         onClick={() => handleClickOpen()} 
                                         size="small"
