@@ -9,19 +9,19 @@ const get = (group) => {
 }
 
 const invite = (group, user) => {
-    return HttpService.post(baseURL + '/' + group + '/invite/' + user)
+    return HttpService.put(baseURL + '/' + group + '/invite/' + user)
         .then(res => { console.debug(res); })
         .catch(e => console.error(e));
 }
 
 const join = (group) => {
-    return HttpService.post(baseURL + '/' + group + '/join')
+    return HttpService.put(baseURL + '/' + group + '/join')
         .then(res => { console.debug(res); })
         .catch(e => console.error(e));
 }
 
 const leave = (group) => {
-    return HttpService.post(baseURL + '/' + group + '/leave')
+    return HttpService.remove(baseURL + '/' + group + '/leave')
         .then(res => { console.debug(res); })
         .catch(e => console.error(e));
 }
