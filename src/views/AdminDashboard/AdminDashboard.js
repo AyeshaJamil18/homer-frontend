@@ -26,6 +26,12 @@ const schema = {
             maximum: 128
         }
     },
+    Category: {
+        presence: { allowEmpty: false, message: 'is required' },
+        length: {
+            maximum: 128
+        }
+    },
     Duration: {
         presence: { allowEmpty: false, message: 'is required' },
         length: {
@@ -191,9 +197,10 @@ const SignUp = props => {
 
         VideoService.saveVideo(formState.values.VideoTitle,
             formState.values.Keywords,
+            formState.values.category,
             formState.values.videoUrl,
             formState.values.Duration,
-            'AyeshaJamil123')
+            'Admin')
             .then((res) => {
                 console.log(res);
                 console.log('Video saved');
@@ -299,11 +306,29 @@ const SignUp = props => {
                                     helperText={
                                         hasError('Keywords') ? formState.errors.Keywords[0] : null
                                     }
-                                    label="Keywords / Categories"
+                                    label="Keywords "
+                                    multiline
                                     name="Keywords"
                                     onChange={handleChange}
                                     type="text"
+                                    rows={4}
                                     value={formState.values.Keywords || ''}
+                                    variant="outlined"
+                                />
+                                <TextField
+                                    className={classes.textField}
+                                    error={hasError('Category')}
+                                    fullWidth
+                                    helperText={
+                                        hasError('Category') ? formState.errors.Category[0] : null
+                                    }
+                                    label="Categories"
+                                    multiline
+                                    name="Category"
+                                    onChange={handleChange}
+                                    type="text"
+                                    rows={4}
+                                    value={formState.values.Category || ''}
                                     variant="outlined"
                                 />
                                 <TextField
@@ -316,7 +341,6 @@ const SignUp = props => {
                                     label="Video Url"
                                     name="videoUrl"
                                     onChange={handleChange}
-                                    type="text"
                                     value={formState.values.videoUrl || ''}
                                     variant="outlined"
                                 />
@@ -327,7 +351,7 @@ const SignUp = props => {
                                     helperText={
                                         hasError('Duration') ? formState.errors.Duration[0] : null
                                     }
-                                    label="Duration (min)"
+                                    label="Points Assigned"
                                     name="Duration"
                                     onChange={handleChange}
                                     type="number"
