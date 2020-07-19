@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
-import { useHistory, useLocation } from 'react-router-dom';
-import { VideoService } from '../../service';
+import { useLocation } from 'react-router-dom';
+import { PlaylistService, VideoService } from '../../service';
 import ReactPlayer from 'react-player';
-import { Typography  } from '@material-ui/core';
+import {
+    Button, Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Grid,
+    Typography
+} from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -13,12 +24,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SearchResultVideo = props => {
+const SearchResultVideo = () => {
     const classes = useStyles();
     let location = useLocation();
-    let history = useHistory();
     const [showVideo, setshowVideo] = React.useState(false);
     const [documentList, setDocumentList] = React.useState([]);
+    const [documentList_add, setDocumentList_add] = React.useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [VideoID, setVideoID] = React.useState('');
+
 
     useEffect(() => { onSearchClick(); }, []);
 
@@ -26,7 +40,9 @@ const SearchResultVideo = props => {
         VideoService.GetVideoByTag(location.state.TagName)
             .then(data => {
                 setDocumentList(data.docs);
+                console.log(data.docs);
                 setshowVideo(true);
+
             })
             .catch((e) => {
                 console.log(e);
@@ -34,12 +50,86 @@ const SearchResultVideo = props => {
 
     };
 
+
+    const GetUSerPlaylist = () =>{
+        PlaylistService.GetPlaylist()
+            .then(data => {
+                setDocumentList_add(data.docs);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleClickOpen = (_idVideo) => {
+
+        GetUSerPlaylist();
+        setOpen(true);
+        console.log(_idVideo);
+        setVideoID(_idVideo);
+    };
+
+    const AddToSpecificPlaylist =(Playlist_name) =>
+    {
+
+        PlaylistService.AddVideo(Playlist_name,VideoID);
+        setOpen(false);
+    };
+
+
     const callonEnd = () =>
     {
                 console.log("This video has ended");
     };
+
     return (
         <div className={classes.root}>
+            <Dialog
+                aria-labelledby="form-dialog-title"
+                onClose={handleClose}
+                open={open}
+            >
+                <DialogTitle id="form-dialog-title">Save To Playlist</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Select the playlist  from the following:
+                    </DialogContentText>
+                    <Grid>
+                        <List>
+                            { documentList_add.map((document)  => (
+                                <ListItem>
+                                    <ListItemText
+                                        primary = {document.title}
+                                    />
+                                    <ListItemSecondaryAction>
+                                        <Button onClick={() => AddToSpecificPlaylist(document._id) } > Add </Button>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            ))
+                            }
+                        </List>
+                    </Grid>
+
+                    {/* {selectedValue == 'None'} */}
+
+
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        color="primary"
+                        onClick={handleClose}
+                    >
+                        Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+
+
             <Typography
                 className={classes.name}
                 variant="h1"
@@ -64,6 +154,11 @@ const SearchResultVideo = props => {
                                 controls={ true}
                                url={document.videoUrl}
                            />
+                           <button
+                               onClick={() => handleClickOpen(document._id)}
+                           >
+                               Add To PlayList
+                           </button>
                         </div>
                     ) : <div>
                         this is false

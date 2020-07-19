@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Avatar from '@material-ui/core/Avatar';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card';
@@ -67,7 +66,7 @@ const Groups = props => {
     }
 
     function createDialogSearch(search) {
-        if (search == "") { setCreateDialogSuggestions([]); return; }
+        if (search === "") { setCreateDialogSuggestions([]); return; }
         UserService.searchUser(search)
             .then((s) => {
                 s = s.filter(suggestion => createDialogInvites.filter(invites => invites.username == suggestion.username).length == 0)
@@ -82,8 +81,8 @@ const Groups = props => {
     }
     function createDialogRemoveInvite(username) {
         var newinvites = [];
-        createDialogInvites.map(invite => { 
-            if (invite.username != username) {
+        createDialogInvites.forEach(invite => { 
+            if (invite.username !== username) {
                 newinvites.push(invite);
             }
         })

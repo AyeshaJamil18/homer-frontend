@@ -71,7 +71,7 @@ const handleBearerToken = (resp) => {
     if (resp.hasOwnProperty('token')) {
         window.localStorage['bearerToken'] = resp.token;
     } else {
-        throw 'Bearer token was not in response';
+        throw new Error('Bearer token was not in response');
     }
 };
 

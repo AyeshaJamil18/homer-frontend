@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import { Notifications, Password } from './components';
+import { Notifications } from './components';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -15,9 +15,6 @@ const Settings = () => {
 
     return (
         <div className={classes.root}>
-
-
-
             <Grid
                 container
                 spacing={4}
