@@ -44,10 +44,6 @@ const Topbar = props => {
                     </Typography>
                 </RouterLink>
                 <div className={classes.flexGrow}/>
-                <SearchField
-                    placeholder='Search item'
-                    onSearchClick={onSearchClick}
-                />
                 <Hidden lgUp>
                     <IconButton
                         color="inherit"
