@@ -80,7 +80,6 @@ const Dashboard = props => {
     const VideoOfTheDay = () => {
         VideoService.videoOfTheDay()
             .then(video => {
-                //console.log(data);
                 //console.log(JSON.stringify(data[0]['videoTitle']));
                 //Video_Name          =data[0]['videoTitle'];
                 //Video_URL           =data[0]['videoUrl'];
@@ -88,8 +87,9 @@ const Dashboard = props => {
                 //Video_Duration      = data[0]['duration'];
                 //console.log(Video_ID)
                 setVideoName(video.videoTitle);
-                setVideoURL(video.videoURL);
+                setVideoURL(video.videoUrl);
                 setVideoID(video.id);
+                //console.log(video);
             })
             .catch((e) => {
                 console.log(e);
@@ -159,7 +159,6 @@ const Dashboard = props => {
         <ReactPlayer controls onEnded={callonEnd} url={VideoURL} />
         <Button onClick={() => handleClickOpen()} > Add to playlist </Button>
     </div>
-
 };
 
 Dashboard.propTypes = {
