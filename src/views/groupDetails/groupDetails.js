@@ -42,7 +42,7 @@ const Groups = props => {
 
     function inviteSearch(search) {
         if (search == "") { setInviteSuggestions([]); return; }
-        UserService.searchUser(search)
+        UserService.searchUser(search, {nomemberof: title})
             .then((s) => {
                 setInviteSuggestions(s);
             }).catch((e) => {
