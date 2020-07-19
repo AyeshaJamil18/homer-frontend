@@ -51,8 +51,8 @@ const checkUserEmailExist = (userEmail) =>
 const getUserByUsername = (username) =>
     HttpService.get(baseURL + '/getUserByUsername/' + username);
 
-const searchUser = (match) => {
-    return HttpService.get(baseURL + '/search/' + match).then(resp => {
+const searchUser = (match, params) => {
+    return HttpService.get(baseURL + '/search/' + match, params).then(resp => {
         if (resp.status === 200) {
             return resp.json()
                 .then(json => {

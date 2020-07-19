@@ -69,6 +69,7 @@ const Groups = props => {
         if (search === "") { setCreateDialogSuggestions([]); return; }
         UserService.searchUser(search)
             .then((s) => {
+                s = s.filter(suggestion => createDialogInvites.filter(invites => invites.username == suggestion.username).length == 0)
                 setCreateDialogSuggestions(s);
             }).catch((e) => {
                 console.error(e);
