@@ -197,7 +197,7 @@ const SignUp = props => {
 
         VideoService.saveVideo(formState.values.VideoTitle,
             formState.values.Keywords,
-            formState.values.category,
+            formState.values.Category,
             formState.values.videoUrl,
             formState.values.Duration,
             'Admin')
