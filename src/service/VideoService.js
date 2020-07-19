@@ -4,10 +4,11 @@ const baseURL = process.env.REACT_APP_BACKEND_API_URL + '/video';
 
 const jwtDecode = require('jwt-decode');
 
-const saveVideo = (VideoName, keywords, VideoURL, Duration, User) => {
+const saveVideo = (VideoName, keywords, category, VideoURL, Duration, User) => {
     const VideoObject = {
         videoTitle: VideoName,
         keywords: keywords,
+        category: category,
         videoUrl: VideoURL,
         duration: Duration,
         uploader: User
